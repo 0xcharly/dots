@@ -39,6 +39,8 @@
 !/.local/bin/open-tmux-workspace
 !/.local/bin/set-pip-position.sh
 !/.local/bin/set-srccpy-position.sh
+!/.ssh
+!/.ssh/config
 !/.README.d
 !/.README.d/bat.md
 !/.README.d/fish.md
