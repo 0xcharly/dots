@@ -13,7 +13,6 @@
 !/.config/nvim/ftplugin
 !/.config/nvim/ftplugin/*.vim
 !/.config/nvim/init.lua
-!/.config/nvim/lazy-lock.json
 !/.config/nvim/lua
 !/.config/nvim/lua/lualine
 !/.config/nvim/lua/lualine/components
