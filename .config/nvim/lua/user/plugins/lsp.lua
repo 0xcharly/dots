@@ -30,7 +30,9 @@ return {
       -- nvim-cmp supports additional completion capabilities.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
-      capabilities = require 'cmp_nvim_ciderlsp'.update_capabilities(capabilities)
+      if company.is_corporate_host() then
+        capabilities = require 'cmp_nvim_ciderlsp'.update_capabilities(capabilities)
+      end
       capabilities.textDocument = {
         foldingRange = {
           dynamicRegistration = false,
