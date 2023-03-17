@@ -10,7 +10,7 @@ if status is-interactive
 
     set -Ux BAT_THEME base16
     set -e FZF_DEFAULT_OPTS
-    set -Ux FZF_DEFAULT_OPTS " --color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8 --color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc --color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+    set -Ux FZF_DEFAULT_OPTS "--color=bg+:#21262d,bg:#191e25,spinner:#f5e0dc,hl:#8bc4f3,hl+:#8bc4f3,fg:#c0c8d0,fg+:#ffffff,header:#b4befe,info:#cba6f7,pointer:#8bc4f3,marker:#8bc4f3,prompt:#b4befe"
     set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
     set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 
