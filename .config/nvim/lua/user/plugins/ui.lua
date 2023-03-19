@@ -1,7 +1,8 @@
 -- UI-related plugins.
 
 return {
-  { -- Colorscheme: Coalescence
+  {
+    -- Colorscheme: Coalescence
     '0xcharly/coalescence.nvim',
     dependencies = { 'tjdevries/colorbuddy.nvim' },
     dev = true,
@@ -9,14 +10,15 @@ return {
     priority = 1000,
     config = function()
       vim.o.termguicolors = true
-      require('colorbuddy').colorscheme 'coalescence'
+      require 'colorbuddy'.colorscheme 'coalescence'
     end,
   },
 
   -- Iconography.
   { 'nvim-tree/nvim-web-devicons', config = true },
 
-  { -- Nicer UI primitives.
+  {
+    -- Nicer UI primitives.
     'folke/noice.nvim',
     dependencies = 'MunifTanjim/nui.nvim',
     event = 'VeryLazy',
@@ -30,8 +32,7 @@ return {
         },
       },
       messages = {
-        enabled = true,
-        view_search = false,
+        enabled = false,
       },
       popupmenu = {
         backend = 'cmp',
@@ -53,7 +54,7 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     config = function()
-      require('lualine').setup {
+      require 'lualine'.setup {
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {
@@ -75,10 +76,10 @@ return {
             {
               'diagnostics',
               symbols = {
-                error = require('user.utils.lsp').diagnostic_signs.Error,
-                warn = require('user.utils.lsp').diagnostic_signs.Warn,
-                info = require('user.utils.lsp').diagnostic_signs.Info,
-                hint = require('user.utils.lsp').diagnostic_signs.Hint,
+                error = require 'user.utils.lsp'.diagnostic_signs.Error,
+                warn = require 'user.utils.lsp'.diagnostic_signs.Warn,
+                info = require 'user.utils.lsp'.diagnostic_signs.Info,
+                hint = require 'user.utils.lsp'.diagnostic_signs.Hint,
               },
             },
           },
@@ -91,7 +92,7 @@ return {
             {
               'branch',
               icon = { '', align = 'right' },
-              color = { fg = require('coalescence.palette').chroma.onSurface1 },
+              color = { fg = require 'coalescence.palette'.chroma.onSurface1 },
             },
           },
           lualine_y = { 'progress' },
@@ -101,13 +102,13 @@ return {
     end,
   },
 
-  { 'lewis6991/gitsigns.nvim', config = true },
+  { 'lewis6991/gitsigns.nvim',     config = true },
 
   {
     'folke/trouble.nvim',
     config = function()
-      local signs = require('user.utils.lsp').diagnostic_signs
-      require('trouble').setup {
+      local signs = require 'user.utils.lsp'.diagnostic_signs
+      require 'trouble'.setup {
         signs = {
           error = signs.Error,
           warning = signs.Warn,
@@ -119,7 +120,8 @@ return {
     end,
   },
 
-  { -- Scrollbar.
+  {
+    -- Scrollbar.
     'petertriho/nvim-scrollbar',
     event = 'BufReadPost',
     config = true,

@@ -84,7 +84,7 @@ return {
       -- Available through fzf-lua if necessary (ie. for performances reason).
       { '<leader>ff', function() require('telescope.builtin').find_files() end },
       {
-        '<C-p>',
+        '<leader>c',
         function()
           vim.fn.system [[ git rev-parse --is-inside-work-tree ]]
           if vim.v.shell_error == 0 then
