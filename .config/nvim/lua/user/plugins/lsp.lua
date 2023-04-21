@@ -1,5 +1,3 @@
-local company = require 'user.utils.company'
-
 return {
   {
     -- Package manager for LSP/DAP servers, and other tools.
@@ -20,19 +18,12 @@ return {
       dependencies = {
         { 'folke/neodev.nvim',   config = true },
         { 'hrsh7th/cmp-nvim-lsp' },
-        {
-          dir = '~/dev/cmp-nvim-ciderlsp',
-          cond = company.is_corporate_host(),
-        },
       },
     },
     config = function()
       -- nvim-cmp supports additional completion capabilities.
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
-      if company.is_corporate_host() then
-        capabilities = require 'cmp_nvim_ciderlsp'.update_capabilities(capabilities)
-      end
       capabilities.textDocument = {
         foldingRange = {
           dynamicRegistration = false,
@@ -82,9 +73,6 @@ return {
           }
         end,
       }
-
-      local company = require 'user.utils.company'
-      if company.is_corporate_host() then company.setup_lsp(capabilities) end
 
       -- Leading icon on diagnostic virtual text.
       vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

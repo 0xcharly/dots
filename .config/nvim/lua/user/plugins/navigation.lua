@@ -1,5 +1,3 @@
-local company = require 'user.utils.company'
-
 return {
   {
     'ThePrimeagen/harpoon',
@@ -27,21 +25,6 @@ return {
 
       -- 3rd-party telescope plugins.
       { 'debugloop/telescope-undo.nvim' },
-      {
-        dir = '~/dev/telescope-codesearch.nvim',
-        cond = company.is_corporate_host(),
-        config = function() require('telescope').load_extension 'codesearch' end,
-        keys = {
-          {
-            '<LocalLeader>gs',
-            function() require('telescope').extensions.codesearch.find_query {} end,
-          },
-          {
-            '<LocalLeader>gf',
-            function() require('telescope').extensions.codesearch.find_files {} end,
-          },
-        },
-      },
     },
     config = function()
       require('telescope').setup {
@@ -63,7 +46,6 @@ return {
               ['<CR>'] = require('telescope.actions').select_default,
             },
           },
-          path_display = company.path_display,
         },
         extensions = {
           ['ui-select'] = {
