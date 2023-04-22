@@ -17,6 +17,15 @@ return {
   -- Iconography.
   { 'nvim-tree/nvim-web-devicons', config = true },
 
+  -- Tree explorer.
+  {
+    'nvim-tree/nvim-tree.lua',
+    config = true,
+    keys = {
+      { '<leader>pt', function() require 'nvim-tree.api'.tree.toggle() end },
+    },
+  },
+
   {
     -- Nicer UI primitives.
     'folke/noice.nvim',
