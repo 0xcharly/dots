@@ -192,6 +192,11 @@ vim.keymap.set('n', '<C-Down>', '<C-w>j', keymap_opts)
 vim.keymap.set('n', '<C-Up>', '<C-w>k', keymap_opts)
 vim.keymap.set('n', '<C-Right>', '<C-w>l', keymap_opts)
 
+vim.keymap.set('i', '<A-Left>', '<cmd>tabprev<cr>', keymap_opts)
+vim.keymap.set('i', '<A-Right>', '<cmd>tabnext<cr>', keymap_opts)
+vim.keymap.set('n', '<A-Left>', '<cmd>tabprev<cr>', keymap_opts)
+vim.keymap.set('n', '<A-Right>', '<cmd>tabnext<cr>', keymap_opts)
+
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv", keymap_opts)

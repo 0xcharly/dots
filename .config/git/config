@@ -1,9 +1,9 @@
 [user]
-    name = Charly Delay
-    email = charly@delay.gg
+  name = Charly Delay
+  email = charly@delay.gg
 [core]
-    editor = nvim
-    excludesFile = ~/.gitignore
+  editor = nvim
+  excludesFile = ~/.config/git/ignore
 	pager = delta
 [init]
 	defaultBranch = main
