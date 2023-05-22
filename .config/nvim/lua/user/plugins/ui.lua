@@ -1,6 +1,8 @@
 -- UI-related plugins.
 
 return {
+  { 'rktjmp/lush.nvim' },
+
   {
     -- Colorscheme: Coalescence
     '0xcharly/coalescence.nvim',
