@@ -1,18 +1,16 @@
 -- UI-related plugins.
 
 return {
-  { 'rktjmp/lush.nvim' },
+  { 'rktjmp/lush.nvim', cmd = 'Lushify' },
+  { 'rktjmp/shipwright.nvim', cmd = 'Shipwright' },
 
   {
-    -- Colorscheme: Coalescence
-    '0xcharly/coalescence.nvim',
-    dependencies = { 'tjdevries/colorbuddy.nvim' },
-    dev = true,
+    '0xcharly/chroma.nvim',
     lazy = false,
     priority = 1000,
     config = function()
       vim.o.termguicolors = true
-      require 'colorbuddy'.colorscheme 'coalescence'
+      vim.cmd [[colorscheme chroma-static]]
     end,
   },
 
@@ -103,7 +101,7 @@ return {
             {
               'branch',
               icon = { '', align = 'right' },
-              color = { fg = require 'coalescence.palette'.chroma.onSurface1 },
+              color = { fg = require 'lush_theme.palette'.chroma.onSurface1 },
             },
           },
           lualine_y = { 'progress' },
