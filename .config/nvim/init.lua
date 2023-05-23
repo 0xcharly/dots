@@ -21,10 +21,6 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
 require 'lazy'.setup('user.plugins', {
-  -- dev = {
-  --   path = '~/dev',
-  --   patterns = { '0xcharly' },
-  -- },
   install = { colorscheme = { 'primebuddy', 'habamax' } },
   ui = {
     border = 'rounded',
