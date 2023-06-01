@@ -41,11 +41,8 @@ return {
         },
       }
 
-      require('telescope').load_extension 'flutter'
       require('telescope').load_extension 'fzf'
-      require('telescope').load_extension 'harpoon'
       require('telescope').load_extension 'lazy'
-      require('telescope').load_extension 'noice'
       require('telescope').load_extension 'undo'
       require('telescope').load_extension 'ui-select'
     end,

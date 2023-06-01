@@ -1,17 +1,8 @@
 return {
-  {
     -- Package manager for LSP/DAP servers, and other tools.
-    'williamboman/mason.nvim',
-    opts = {
-      ensure_installed = {
-        'stylua',
-        'black',
-      },
-    },
-  },
+  { 'williamboman/mason.nvim' },
 
   {
-    -- Package manager for LSP/DAP servers, and other tools.
     'williamboman/mason-lspconfig.nvim',
     dependencies = {
       'neovim/nvim-lspconfig',
