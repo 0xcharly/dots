@@ -14,7 +14,6 @@ return {
   -- Search engines.
   {
     'nvim-telescope/telescope.nvim',
-    lazy = false,
     dependencies = {
       -- 1st-party telescope plugins.
       { 'nvim-telescope/telescope-symbols.nvim' },
