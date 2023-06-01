@@ -17,49 +17,6 @@ return {
   -- Iconography.
   { 'nvim-tree/nvim-web-devicons', config = true },
 
-  -- Tree explorer.
-  {
-    'nvim-tree/nvim-tree.lua',
-    config = true,
-    keys = {
-      { '<leader>pt', function() require 'nvim-tree.api'.tree.toggle() end },
-    },
-  },
-
-  {
-    -- Nicer UI primitives.
-    'folke/noice.nvim',
-    dependencies = 'MunifTanjim/nui.nvim',
-    event = 'VeryLazy',
-    opts = {
-      cmdline = {
-        format = {
-          cmdline = { pattern = '^:', icon = ': ', lang = 'vim' },
-          filter = { pattern = '^:%s*!', icon = ' ', lang = 'bash' },
-          help = { pattern = '^:%s*he?l?p?%s+', icon = ' ' },
-          lua = { pattern = '^:%s*lua%s+', icon = ' ', lang = 'lua' },
-        },
-      },
-      messages = {
-        enabled = false,
-      },
-      popupmenu = {
-        backend = 'cmp',
-      },
-      presets = {
-        lsp_doc_border = true,
-        inc_rename = true,
-      },
-      lsp = {
-        override = {
-          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-          ['vim.lsp.util.stylize_markdown'] = true,
-          ['cmp.entry.get_documentation'] = true,
-        },
-      },
-    },
-  },
-
   {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -111,21 +68,5 @@ return {
     end,
   },
 
-  { 'lewis6991/gitsigns.nvim',     config = true },
-
-  {
-    'folke/trouble.nvim',
-    config = function()
-      local signs = require 'user.utils.lsp'.diagnostic_signs
-      require 'trouble'.setup {
-        signs = {
-          error = signs.Error,
-          warning = signs.Warn,
-          hint = signs.Hint,
-          information = signs.Info,
-          other = '﫠',
-        },
-      }
-    end,
-  },
+  { 'lewis6991/gitsigns.nvim', config = true },
 }

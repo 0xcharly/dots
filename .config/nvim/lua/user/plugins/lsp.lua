@@ -108,23 +108,6 @@ return {
   },
 
   {
-    -- Enrich Flutter development.
-    'akinsho/flutter-tools.nvim',
-    ft = 'dart',
-    opts = {
-      decorations = {
-        statusline = {
-          app_version = true,
-          device = true,
-        },
-      },
-      lsp = {
-        on_attach = require 'user.utils.lsp'.user_on_attach,
-      },
-    },
-  },
-
-  {
     -- Incremental LSP rename.
     'smjonas/inc-rename.nvim',
     cmd = 'IncRename',

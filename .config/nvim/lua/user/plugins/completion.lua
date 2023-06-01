@@ -111,5 +111,4 @@ return {
       })
     end,
   },
-  { 'crispgm/cmp-beancount', ft = 'beancount' },
 }

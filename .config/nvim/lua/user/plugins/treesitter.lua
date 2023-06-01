@@ -16,20 +16,12 @@ return {
     config = function()
       require 'nvim-treesitter.configs'.setup {
         ensure_installed = {
-          'bash',
           'beancount',
           'c',
-          'cmake',
           -- 'comment', -- PERF: Huge performance drop when using `comment`.
           'cpp',
-          'css',
-          'dart',
           'diff',
-          'fish',
-          'gitignore',
-          'go',
           'help',
-          'html',
           'java',
           'json',
           'kotlin',
@@ -41,7 +33,6 @@ return {
           'rst',
           'rust',
           'sql',
-          'vim',
           'yaml',
         },
         highlight = { enable = true },
