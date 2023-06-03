@@ -48,9 +48,9 @@ return {
     end,
     keys = {
       -- Available through fzf-lua if necessary (ie. for performances reason).
-      { '<leader>ff', function() require('telescope.builtin').find_files() end },
+      { '<LocalLeader>f', function() require('telescope.builtin').find_files() end },
       {
-        '<leader>c',
+        '<LocalLeader>F',
         function()
           vim.fn.system [[ git rev-parse --is-inside-work-tree ]]
           if vim.v.shell_error == 0 then
@@ -60,9 +60,9 @@ return {
           end
         end,
       },
-      { '<leader>g', function() require('telescope.builtin').live_grep() end },
+      { '<LocalLeader>g', function() require('telescope.builtin').live_grep() end },
       {
-        '<leader>.',
+        '<LocalLeader>.',
         function()
           local opts = { cwd = '~/.config' }
           if vim.fn.executable 'rg' > 0 then
@@ -74,16 +74,18 @@ return {
         end,
       },
       -- Telescope only.
-      { '<leader>b', require('user.utils.telescope').buffers },
-      { '<LocalLeader>ld', function() require('telescope.builtin').diagnostics() end },
-      { '<leader>F', function() require('telescope').extensions.flutter.commands() end },
-      { '<leader>L', function() require('telescope').extensions.lazy.lazy() end },
-      { '<leader>tm', function() require('telescope.builtin').man_pages() end },
-      { '<LocalLeader>ts', function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end },
-      { '<leader>su', function() require('telescope').extensions.undo.undo() end },
-      { '<leader>*', function() require('telescope.builtin').grep_string() end },
-      { '<leader>/', function() require('telescope.builtin').find_files() end },
-      { '<leader>?', function() require('telescope.builtin').help_tags() end },
+      { '<LocalLeader>b', require('user.utils.telescope').buffers },
+      { '<LocalLeader>j', function() require('telescope.builtin').jumplist() end },
+      { '<LocalLeader>s', function() require('telescope.builtin').lsp_document_symbols() end },
+      { '<LocalLeader>S', function() require('telescope.builtin').lsp_dynamic_workspace_symbols() end },
+      { '<LocalLeader>d', function() require('telescope.builtin').diagnostics() end },
+      { '<LocalLeader>/', function() require('telescope.builtin').find_files() end },
+      { '<LocalLeader>?', function() require('telescope.builtin').help_tags() end },
+
+      { '<LocalLeader>tm', function() require('telescope.builtin').man_pages() end },
+      { '<LocalLeader>u', function() require('telescope').extensions.undo.undo() end },
+      { '<LocalLeader>*', function() require('telescope.builtin').grep_string() end },
+      { '<LocalLeader>L', function() require('telescope').extensions.lazy.lazy() end },
     },
   },
 

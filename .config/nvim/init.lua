@@ -17,8 +17,8 @@ local company = require 'user.utils.company'
 company.setup()
 
 -- Set global leader key.
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
+vim.g.mapleader = ','
+vim.g.maplocalleader = ' '
 
 require 'lazy'.setup('user.plugins', {
   install = { colorscheme = { 'primebuddy', 'habamax' } },
@@ -160,6 +160,14 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 -- [[ Key bindings ]]
 local keymap_opts = { silent = true }
 
+-- Helix-inspired keymaps.
+vim.keymap.set('n', 'U', '<C-r>', keymap_opts) -- Redo
+vim.keymap.set('n', 'gh', '^', keymap_opts) -- Goto line start
+vim.keymap.set('n', 'gl', '$', keymap_opts) -- Goto line end
+vim.keymap.set('n', 'ge', 'G', keymap_opts) -- Goto last line
+vim.keymap.set('n', 'gn', ':bnext<CR>', keymap_opts) -- Goto next buffer
+vim.keymap.set('n', 'gp', ':bprevious<CR>', keymap_opts) -- Goto previous buffer
+
 -- Diagnostic keymaps.
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, keymap_opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
@@ -193,7 +201,7 @@ vim.keymap.set('i', '<A-Right>', '<cmd>tabnext<cr>', keymap_opts)
 vim.keymap.set('n', '<A-Left>', '<cmd>tabprev<cr>', keymap_opts)
 vim.keymap.set('n', '<A-Right>', '<cmd>tabnext<cr>', keymap_opts)
 
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<LocalLeader>pv', vim.cmd.Ex)
 
 vim.keymap.set('v', 'J', ":m '>+1<cr>gv=gv", keymap_opts)
 vim.keymap.set('v', 'K', ":m '<-2<cr>gv=gv", keymap_opts)
@@ -218,12 +226,6 @@ vim.keymap.set('n', '<leader>Y', '"+Y', keymap_opts)
 -- Better delete.
 vim.keymap.set('n', '<leader>d', '"_d', keymap_opts)
 vim.keymap.set('v', '<leader>d', '"_d', keymap_opts)
-
--- Better jumps.
-vim.keymap.set('n', '<C-k>', '<cmd>cnext<cr>zz', keymap_opts)
-vim.keymap.set('n', '<C-j>', '<cmd>cprev<cr>zz', keymap_opts)
-vim.keymap.set('n', '<leader>k', '<cmd>lnext<cr>zz', keymap_opts)
-vim.keymap.set('n', '<leader>j', '<cmd>lprev<cr>zz', keymap_opts)
 
 -- Tools integration.
 vim.keymap.set('n', '<c-f>', '<cmd>!tmux new-window ~/.local/bin/open-tmux-workspace<cr>', keymap_opts)

@@ -1,7 +1,20 @@
-theme = "catppuccin_mocha"
+theme = "doonium"
 
-[editor.cursor-shape]
-insert = "bar"
+[editor]
+auto-pairs = false
+color-modes = true
+line-number = "relative"
+
+[keys.normal]
+D = "kill_to_line_end"
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"] # Move line below.
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"] # Move line above.
+
+[keys.normal."space"]
+"." = ":open ~/.config" # Quick open dot files.
+
+[keys.normal."space".t]
+f = ["select_all", ":pipe sed 's/[[:space:]]*$//'"]
 
 [keys.normal.g]
 q = ":reflow"

@@ -3,13 +3,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
       { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
-
-      {
-        'nvim-treesitter/nvim-treesitter-context',
-        event = 'BufReadPre',
-        config = true,
-      },
-
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
       { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },

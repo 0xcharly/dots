@@ -9,6 +9,8 @@
 !/.config/kitty/*
 !/.config/helix
 !/.config/helix/config.toml
+!/.config/helix/themes
+!/.config/helix/themes/doonium.toml
 !/.config/nvim
 !/.config/nvim/ftdetect
 !/.config/nvim/ftdetect/*.vim

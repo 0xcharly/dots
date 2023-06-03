@@ -1,0 +1,202 @@
+## Syntax highlighting
+## These keys match tree-sitter scopes.
+## https://tree-sitter.github.io/tree-sitter/syntax-highlighting#theme
+#"attribute" = "colour"
+#"type" = "colour"
+"type.builtin" = "orange1"
+#"type.enum" = "colour"
+#"type.enum.variant" = "colour"
+#"constructor" = "colour"
+"constant" = "orange1"
+"constant.builtin" = "red0"
+"constant.builtin.boolean" = "red1"
+"constant.character" = "orange1"
+"constant.character.escape" = "skyBlueOnSurface"
+"constant.numeric" = "skyBlueOnSurface"
+#"constant.numeric.integer" = "colour"
+"constant.numeric.float" = "red0"
+"string" = "teal"
+#"string.regexp" = "colour"
+#"string.special" = "colour"
+#"string.special.path" = "colour"
+#"string.special.url" = "colour"
+#"string.special.symbol" = "colour"
+"comment" = { fg = "onSurface3", modifiers = ["italic"] }
+#"comment.line" = "colour"
+#"comment.block" = "colour"
+"comment.block.documentation" = "onSurface2"
+#"variable" = "colour"
+"variable.builtin" = "lavenderOnSurface"
+#"variable.parameter" = "colour"
+#"variable.other" = "colour"
+#"variable.other.member" = "colour"
+"label" = "purpleOnSurface"
+#"punctuation" = "colour"
+"punctuation.delimiter" = "onSurface1"
+"punctuation.bracket" = "punctuation.bracket"
+"punctuation.special" = "skyBuleOnSurface"
+"keyword" = "purpleOnSurface"
+#"keyword.control" = "colour"
+"keyword.control.conditional" = "purpleOnSurface"
+"keyword.control.repeat" = "purpleOnSurface"
+#"keyword.control.import" = "colour"
+"keyword.control.return" = "red0"
+#"keyword.control.exception" = "colour"
+"keyword.operator" = "onSurface1"
+"keyword.directive" = "orange2"
+#"keyword.function" = "colour"
+#"keyword.storage" = "colour"
+#"keyword.storage.type" = "colour"
+#"keyword.storage.modifier" = "colour"
+"operator" = "onSurface1"
+"function" = "skyBlueOnSurface"
+"function.builtin" = "skyBlueOnSurface"
+"function.method" = "skyBlueOnSurface"
+"function.macro" = "cyanOnSurface"
+#"function.special" = "colour"
+"tag" = "red0"
+#"tag.builtin" = "colour"
+"namespace" = "red1"
+"special" = "orange1" # Fuzzy highlighting
+#"markup" = "colour"
+#"markup.heading" = "colour"
+#"markup.heading.marker" = "colour"
+#"markup.heading.1" = "colour"
+#"markup.heading.2" = "colour"
+#"markup.heading.3" = "colour"
+#"markup.heading.4" = "colour"
+#"markup.heading.5" = "colour"
+#"markup.heading.6" = "colour"
+#"markup.list" = "colour"
+#"markup.list.unnumbered" = "colour"
+#"markup.list.numbered" = "colour"
+#"markup.list.unchecked" = "colour"
+#"markup.list.checked" = "colour"
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.stikethrough" = { modifiers = ["crossed_out"] }
+#"markup.link" = "colour"
+"markup.link.url" = { fg = "altSkyBlueOnSurface", modifiers = ["underlined"] }
+#"markup.link.label" = "colour"
+#"markup.link.text" = "colour"
+#"markup.quote" = "colour"
+#"markup.raw" = "colour"
+#"markup.raw.inline" = "colour"
+#"markup.raw.block" = "colour"
+#"diff" = "colour"
+"diff.plus" = "green0"
+"diff.minus" = "red0"
+"diff.delta" = "yellow0"
+"diff.delta.moved" = "skyBlueOnSurface"
+
+# Interface
+# These scopes are used for theming the editor interface.
+#"markup" = "colour"
+#"markup.normal" = "colour"
+#"markup.normal.completion" = "colour"
+#"markup.normal.hover" = "colour"
+#"markup.heading" = "colour"
+#"markup.heading.completion" = "colour"
+#"markup.heading.hover" = "colour"
+#"markup.raw" = "colour"
+#"markup.raw.inline" = "colour"
+#"markup.raw.inline.completion" = "colour"
+#"markup.raw.inline.hover" = "colour"
+
+"ui.background" = "surface0"
+"ui.background.separator" = "onSurface4"
+#"ui.cursor" = "colour"
+#"ui.cursor.normal" = "colour"
+"ui.cursor.insert" = { bg = "onSurface4" }
+#"ui.cursor.select" = "colour"
+#"ui.cursor.match" = "colour"
+"ui.cursor.primary" = { bg = "onSurface3" }
+#"ui.cursor.primary.normal" = "colour"
+"ui.cursor.primary.insert" = { bg = "onSurface2" }
+#"ui.cursor.primary.select" = "colour"
+#"ui.debug.breakpoint" = "colour"
+#"ui.debug.active" = "colour"
+"ui.gutter" = "onSurface0"
+"ui.gutter.selected" = "ui.gutter"
+#"ui.highlight.frameline" = "colour"
+"ui.linenr" = "onSurface4"
+"ui.linenr.selected" = "onSurface1"
+"ui.statusline" = { fg = "onSurface1", bg = "surface00" }
+"ui.statusline.inactive" = { fg = "onSurface3", bg = "surface0" }
+"ui.statusline.normal" = { fg = "onSurface2", bg = "surface1", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "surface0", bg = "green0", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "surface0", bg = "red1", modifiers = ["bold"] }
+#"ui.statusline.separator" = "colour"
+"ui.popup" = { bg = "surface1" }
+"ui.popup.info" = { fg = "onSurface2", bg = "surface2" }
+"ui.window" = "onSurface4"
+"ui.help" = { fg = "onSurface1", bg = "surface1" }
+"ui.text" = "onSurface0"
+"ui.text.focus" = { bg = "surface1", modifiers = ["bold"] }
+#"ui.text.inactive" = "colour"
+"ui.text.info" = "onSurface1"
+#"ui.virtual.ruler" = "colour"
+#"ui.virtual.whitespace" = "colour"
+#"ui.virtual.indent-guide" = "colour"
+"ui.virtual.inlay-hint" = { fg = "onSurface4", modifiers = ["italic"] }
+#"ui.virtual.inlay-hint.parameter" = "colour"
+#"ui.virtual.inlay-hint.type" = "colour"
+#"ui.virtual.wrap" = "colour"
+"ui.menu" = { fg = "onSurface2", bg = "surface1" }
+"ui.menu.selected" = { fg = "onSurface1", bg = "surface1", modifiers = ["bold"] }
+#"ui.menu.scroll" = "colour"
+"ui.selection" = { bg = "surface3" }
+#"ui.selection.primary" = { bg = "colour" }
+"ui.highlight" = { bg = "surface1", modifiers = ["bold"] }
+#"ui.cursorline.primary" = "colour"
+#"ui.cursorline.secondary" = "colour"
+#"ui.cursorcolumn.primary" = "colour"
+#"ui.cursorcolumn.secondary" = "colour"
+"hint" = "onSurface2"
+"info" = "onSurface1"
+"warning" = "yellow0"
+"error" = "red0"
+"diagnostic" = "skyBlueOnSurface"
+"diagnostic.hint" = "hint"
+"diagnostic.info" = "info"
+"diagnostic.warning" = "warning"
+"diagnostic.error" = "error"
+
+[palette]
+# Background tones.
+surface00 = "#141920"   # Emphasized/countersunk background.
+surface0 = "#191e25"    # Background.
+surface1 = "#21262d"    # Background highlights.
+surface2 = "#2c3138"    # Background selection.
+surface3 = "#4e525a"    # Selection.
+
+# Content tones.
+onSurface00 = "#ffffff" # Optional emphasized content.
+onSurface0 = "#c0c8d0"  # Body text, default code, primary content.
+onSurface1 = "#abb2bf"
+onSurface2 = "#8b949e"  # Comments, secondary content.
+onSurface3 = "#6e7681"
+onSurface4 = "#484f58"  # Inlays, codelens.
+
+highlight = "#0842a0"
+onHighlight = "#d3e3fd"
+
+blueOnSurface = "#58a6ff"
+altSkyBlueOnSurface = "#79c0ff"
+skyBlueOnSurface = "#8bc4f3"
+cyanOnSurface = "#89dceb"
+tealOnSurface = "#94e2d5"
+green0 = "#a3be8c"
+green1 = "#b1d196"
+teal = "#8bd5ca"
+orange0 = "#d89079"
+orange1 = "#ffaa79"
+orange2 = "#ffc2b2"
+yellow0 = "#f0d399"
+yellow1 = "#f9e2af"
+red0 = "#d06f79"
+red1 = "#ed8796"
+red2 = "#e3a1a7"
+purpleOnSurface = "#cbaff9"
+lavenderOnSurface = "#b4befe"
+altLavenderOnSurface = "#a1abe3"
