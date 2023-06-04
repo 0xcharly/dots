@@ -1,20 +1,26 @@
 theme = "doonium"
 
 [editor]
+auto-format = false
 auto-pairs = false
 color-modes = true
+completion-trigger-len = 1
+cursorline = true
+idle-timeout = 50
 line-number = "relative"
+
+[editor.lsp]
+display-messages = true
+
+[editor.statusline]
+left = ["mode", "spinner", "file-name", "file-modification-indicator", "file-type", "file-encoding"]
+center = []
+right = ["selections", "primary-selection-length", "diagnostics", "spacer", "workspace-diagnostics", "version-control", "spacer", "position-percentage", "position"]
 
 [keys.normal]
 D = "kill_to_line_end"
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"] # Move line below.
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"] # Move line above.
-
-[keys.normal."space"]
-"." = ":open ~/.config" # Quick open dot files.
-
-[keys.normal."space".t]
-f = ["select_all", ":pipe sed 's/[[:space:]]*$//'"]
-
-[keys.normal.g]
-q = ":reflow"
+g.q = ":reflow"
+space."." = ":open ~/.config" # Quick open dot files.
+space.t.f = ["select_all", ":pipe sed 's/[[:space:]]*$//'"]
