@@ -71,7 +71,7 @@ return {
         -- This sets the spacing and the prefix, obviously.
         virtual_text = {
           spacing = 4,
-          prefix = ' ',
+          prefix = '  ',
         },
       })
 

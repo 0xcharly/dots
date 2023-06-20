@@ -2,7 +2,7 @@ local M = {}
 
 -- { error = '󰅗 󰅙 󰅘 󰅚 󱄊 ', warn = '󰀨 󰗖 󱇎 󱇏 󰲼 ', info = '󰋽 󱔢 ', hint = '󰲽 ' },
 M.diagnostic_signs = {
-  Error = ' ',
+  Error = '󰅚 ',
   Warn = '󰗖 ',
   Info = '󰋽 ',
   Hint = '󰲽 ',
