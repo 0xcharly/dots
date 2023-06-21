@@ -17,6 +17,9 @@ return {
   -- Iconography.
   { 'nvim-tree/nvim-web-devicons', config = true },
 
+  -- Git integration.
+  { 'lewis6991/gitsigns.nvim', config = true },
+
   {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -58,7 +61,7 @@ return {
             {
               'branch',
               icon = { '', align = 'right' },
-              color = { fg = require 'lush_theme.palette'.chroma.onSurface1 },
+              color = { fg = 'Normal' },
             },
           },
           lualine_y = { 'progress' },
@@ -67,6 +70,4 @@ return {
       }
     end,
   },
-
-  { 'lewis6991/gitsigns.nvim', config = true },
 }
