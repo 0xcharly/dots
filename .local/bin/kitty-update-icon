@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Required parameters:
+# @raycast.schemaVersion 1
+# @raycast.title Kitty: update icon
+# @raycast.mode silent
+
+# Optional parameters:
+# @raycast.icon 🖥️
+# @raycast.packageName Developer Utils
+
+# Documentation:
+# @raycast.description Update Kitty icon
+# @raycast.author Charly Delay
+
+cp ~/.local/share/kitty/kitty.icns /Applications/kitty.app/Contents/Resources/kitty.icns
+rm /var/folders/*/*/*/com.apple.dock.iconcache
+touch /Applications/kitty.app
+killall Dock && killall Finder

@@ -37,11 +37,11 @@
 !/.local/bin
 !/.local/bin/fix-chrome-scale-factor
 !/.local/bin/git-init-qmk-worktrees
-!/.local/bin/kitty-update-icon.sh
+!/.local/bin/kitty-update-icon
+!/.local/bin/mirror-dev-device-33301JEHN18611
+!/.local/bin/mirror-dev-device-98311FFAZ004TE
 !/.local/bin/mirror-dev-device.sh
 !/.local/bin/open-tmux-workspace
-!/.local/bin/set-pip-position.sh
-!/.local/bin/set-srccpy-position.sh
 !/.ssh
 !/.ssh/config
 !/.README.d
