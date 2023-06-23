@@ -25,6 +25,9 @@ require 'lazy'.setup('user.plugins', {
   ui = {
     border = 'rounded',
   },
+  change_detection = {
+    notify = false,
+  },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -174,12 +177,6 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, keymap_opts)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, keymap_opts)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, keymap_opts)
 
--- To use `ALT+{h,j,k,l}` to navigate windows from any mode:
-vim.keymap.set('t', '<M-Left>', '<C-\\><C-N><C-w>h', keymap_opts)
-vim.keymap.set('t', '<M-Down>', '<C-\\><C-N><C-w>j', keymap_opts)
-vim.keymap.set('t', '<M-Up>', '<C-\\><C-N><C-w>k', keymap_opts)
-vim.keymap.set('t', '<M-Right>', '<C-\\><C-N><C-w>l', keymap_opts)
-
 -- Make esc leave terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', keymap_opts)
 
@@ -187,6 +184,11 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', keymap_opts)
 vim.keymap.set('t', '<S-Space>', '<Space>', keymap_opts)
 vim.keymap.set('t', '<C-Space>', '<Space>', keymap_opts)
 
+-- To use `Control+{h,j,k,l}` to navigate windows from any mode:
+vim.keymap.set('t', '<M-Left>', '<C-\\><C-N><C-w>h', keymap_opts)
+vim.keymap.set('t', '<M-Down>', '<C-\\><C-N><C-w>j', keymap_opts)
+vim.keymap.set('t', '<M-Up>', '<C-\\><C-N><C-w>k', keymap_opts)
+vim.keymap.set('t', '<M-Right>', '<C-\\><C-N><C-w>l', keymap_opts)
 vim.keymap.set('i', '<C-Left>', '<C-\\><C-N><C-w>h', keymap_opts)
 vim.keymap.set('i', '<C-Down>', '<C-\\><C-N><C-w>j', keymap_opts)
 vim.keymap.set('i', '<C-Up>', '<C-\\><C-N><C-w>k', keymap_opts)
@@ -226,6 +228,3 @@ vim.keymap.set('n', '<leader>Y', '"+Y', keymap_opts)
 -- Better delete.
 vim.keymap.set('n', '<leader>d', '"_d', keymap_opts)
 vim.keymap.set('v', '<leader>d', '"_d', keymap_opts)
-
--- Tools integration.
-vim.keymap.set('n', '<c-f>', '<cmd>!tmux new-window ~/.local/bin/open-tmux-workspace<cr>', keymap_opts)

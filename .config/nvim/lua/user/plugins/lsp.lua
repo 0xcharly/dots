@@ -1,5 +1,5 @@
 return {
-    -- Package manager for LSP/DAP servers, and other tools.
+  -- Package manager for LSP/DAP servers, and other tools.
   { 'williamboman/mason.nvim' },
 
   {
@@ -104,7 +104,14 @@ return {
     cmd = 'IncRename',
     config = true,
     keys = {
-      { '<LocalLeader>bf', '<cmd>Increname<cr>', desc = '[R]ename ([B]uffer)' },
+      {
+        '<LocalLeader>R',
+        function()
+          return ':IncRename ' .. vim.fn.expand '<cword>'
+        end,
+        expr = true,
+        desc = '[R]ename (LSP)'
+      },
     },
   },
 
@@ -117,7 +124,6 @@ return {
         save_after_format = false,
         on_attach = require 'user.utils.lsp'.user_on_attach,
         sources = {
-          nls.builtins.formatting.stylua,
           nls.builtins.formatting.fish_indent,
           nls.builtins.formatting.jq,
           nls.builtins.formatting.shfmt,
@@ -126,7 +132,6 @@ return {
           nls.builtins.formatting.prettierd.with {
             filetypes = { 'markdown' }, -- only runs `deno fmt` for markdown
           },
-          nls.builtins.formatting.black,
         },
       }
     end,
