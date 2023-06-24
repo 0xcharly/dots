@@ -96,16 +96,31 @@ return {
     config = function()
       local opts = {
         winopts = {
+          border = 'none',
           preview = {
             title_align = 'center',
             scrollbar = false,
           },
         },
+        fzf_colors = {
+          ['fg'] = { 'fg', 'FzfLuaColorsFg' },
+          ['fg+'] = { 'fg', 'FzfLuaColorsFgSel', 'reverse:-1' },
+          ['bg'] = { 'fg', 'FzfLuaColorsBg' },
+          ['bg+'] = { 'fg', 'FzfLuaColorsBgSel' },
+          ['hl'] = { 'fg', 'FzfLuaColorsHl' },
+          ['hl+'] = { 'fg', 'FzfLuaColorsHlSel', 'underline:reverse:-1' },
+          ['info'] = { 'fg', 'FzfLuaColorsInfo' },
+          ['prompt'] = { 'fg', 'FzfLuaColorsPrompt' },
+          ['pointer'] = { 'fg', 'FzfLuaColorsPointer' },
+          ['marker'] = { 'fg', 'FzfLuaColorsMarker' },
+          ['spinner'] = { 'fg', 'FzfLuaColorsSpinner' },
+          ['header'] = { 'fg', 'FzfLuaColorsHeader' },
+        },
         keymap = {
           builtin = {}, -- Delete all defaults.
           fzf = {
             -- fzf '--bind=' options
-            ['ctrl-c']     = 'abort',
+            ['ctrl-d']     = 'abort',
             ['ctrl-u']     = 'unix-line-discard',
             ['ctrl-f']     = 'half-page-down',
             ['ctrl-b']     = 'half-page-up',

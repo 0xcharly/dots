@@ -228,3 +228,7 @@ vim.keymap.set('n', '<leader>Y', '"+Y', keymap_opts)
 -- Better delete.
 vim.keymap.set('n', '<leader>d', '"_d', keymap_opts)
 vim.keymap.set('v', '<leader>d', '"_d', keymap_opts)
+
+-- Pane creation.
+vim.keymap.set('n', '<LocalLeader>ws', '<cmd>split<cr>', keymap_opts)
+vim.keymap.set('n', '<LocalLeader>wv', '<cmd>vsplit<cr>', keymap_opts)

@@ -24,6 +24,58 @@ return {
     'nvim-lualine/lualine.nvim',
     config = function()
       require 'lualine'.setup {
+        options = {
+          theme = {
+            normal = {
+              a = 'LualineANormal',
+              b = 'LualineBNormal',
+              c = 'LualineCNormal',
+              x = 'LualineXNormal',
+              y = 'LualineYNormal',
+              z = 'LualineZNormal',
+            },
+            insert = {
+              a = 'LualineAInsert',
+              b = 'LualineBInsert',
+              c = 'LualineCInsert',
+              x = 'LualineXInsert',
+              y = 'LualineYInsert',
+              z = 'LualineZInsert',
+            },
+            visual = {
+              a = 'LualineAVisual',
+              b = 'LualineBVisual',
+              c = 'LualineCVisual',
+              x = 'LualineXVisual',
+              y = 'LualineYVisual',
+              z = 'LualineZVisual',
+            },
+            replace = {
+              a = 'LualineAReplace',
+              b = 'LualineBReplace',
+              c = 'LualineCReplace',
+              x = 'LualineXReplace',
+              y = 'LualineYReplace',
+              z = 'LualineZReplace',
+            },
+            command = {
+              a = 'LualineACommand',
+              b = 'LualineBCommand',
+              c = 'LualineCCommand',
+              x = 'LualineXCommand',
+              y = 'LualineYCommand',
+              z = 'LualineZCommand',
+            },
+            inactive = {
+              a = 'LualineAInactive',
+              b = 'LualineBInactive',
+              c = 'LualineCInactive',
+              x = 'LualineXInactive',
+              y = 'LualineYInactive',
+              z = 'LualineZInactive',
+            },
+          },
+        },
         sections = {
           lualine_a = { 'mode' },
           lualine_b = {
@@ -61,7 +113,6 @@ return {
             {
               'branch',
               icon = { '', align = 'right' },
-              color = { fg = 'Normal' },
             },
           },
           lualine_y = { 'progress' },
