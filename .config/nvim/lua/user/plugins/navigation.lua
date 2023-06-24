@@ -96,11 +96,22 @@ return {
     config = function()
       local opts = {
         winopts = {
-          border = 'none',
+          --border = 'none',
           preview = {
             title_align = 'center',
             scrollbar = false,
           },
+        },
+        fzf_opts = {
+          ['--ansi']   = '',
+          ['--info']   = 'inline',
+          ['--height'] = '100%',
+          ['--layout'] = 'reverse',
+          ['--border'] = 'none',
+          ['--prompt'] = '❯',
+          ['--pointer'] = '❯',
+          ['--marker'] = '❯',
+          ['--no-scrollbar'] = '',
         },
         fzf_colors = {
           ['fg'] = { 'fg', 'FzfLuaColorsFg' },
