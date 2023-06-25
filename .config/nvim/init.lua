@@ -216,18 +216,18 @@ vim.keymap.set('n', '<C-d>', '<C-d>zz', keymap_opts)
 vim.keymap.set('n', '<C-u>', '<C-u>zz', keymap_opts)
 
 -- Better virtual paste.
-vim.keymap.set('x', '<leader>p', '"_dP', keymap_opts)
+vim.keymap.set('x', '<LocalLeader>p', '"_dP', keymap_opts)
 vim.keymap.set('i', '<C-v>', '<C-o>"+p', keymap_opts)
 vim.keymap.set('c', '<C-v>', '<C-r>+', keymap_opts)
 
 -- Better yank.
-vim.keymap.set('n', '<leader>y', '"+y', keymap_opts)
-vim.keymap.set('v', '<leader>y', '"+y', keymap_opts)
-vim.keymap.set('n', '<leader>Y', '"+Y', keymap_opts)
+vim.keymap.set('n', '<LocalLeader>y', '"+y', keymap_opts)
+vim.keymap.set('v', '<LocalLeader>y', '"+y', keymap_opts)
+vim.keymap.set('n', '<LocalLeader>Y', '"+Y', keymap_opts)
 
 -- Better delete.
-vim.keymap.set('n', '<leader>d', '"_d', keymap_opts)
-vim.keymap.set('v', '<leader>d', '"_d', keymap_opts)
+vim.keymap.set('n', '<LocalLeader>d', '"_d', keymap_opts)
+vim.keymap.set('v', '<LocalLeader>d', '"_d', keymap_opts)
 
 -- Pane creation.
 vim.keymap.set('n', '<LocalLeader>ws', '<cmd>split<cr>', keymap_opts)
