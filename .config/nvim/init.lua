@@ -88,23 +88,23 @@ vim.o.wrap = false
 
 -- Search.
 vim.o.incsearch = true
-vim.o.ignorecase = true -- Ignore case when searching...
-vim.o.smartcase = true -- ... unless there is a capital letter in the query
-vim.o.splitright = true -- Prefer windows splitting to the right
-vim.o.splitbelow = true -- Prefer windows splitting to the bottom
-vim.o.updatetime = 50 -- Make updates happen faster
-vim.o.scrolloff = 8 -- Make it so there are always 8 lines below my cursor
+vim.o.ignorecase = true                       -- Ignore case when searching...
+vim.o.smartcase = true                        -- ... unless there is a capital letter in the query
+vim.o.splitright = true                       -- Prefer windows splitting to the right
+vim.o.splitbelow = true                       -- Prefer windows splitting to the bottom
+vim.o.updatetime = 50                         -- Make updates happen faster
+vim.o.scrolloff = 8                           -- Make it so there are always 8 lines below my cursor
 
 vim.opt.formatoptions = vim.opt.formatoptions -- :h fo
-    - 'a' -- Auto formatting is BAD.
-    - 't' -- Don't auto format my code. I got linters for that.
-    + 'q' -- continue comments with gq'.
-    + 'c' -- Auto-wrap comments using textwidth.
-    - 'o' -- O and o, don't continue comments.
-    + 'r' -- But do continue when pressing enter.
-    + 'n' -- Indent past the formatlistpat, not underneath it.
-    + 'j' -- Auto-remove comments if possible.
-    - '2' -- Use indent from 2nd line of a paragraph.
+    - 'a'                                     -- Auto formatting is BAD.
+    - 't'                                     -- Don't auto format my code. I got linters for that.
+    + 'q'                                     -- continue comments with gq'.
+    + 'c'                                     -- Auto-wrap comments using textwidth.
+    - 'o'                                     -- O and o, don't continue comments.
+    + 'r'                                     -- But do continue when pressing enter.
+    + 'n'                                     -- Indent past the formatlistpat, not underneath it.
+    + 'j'                                     -- Auto-remove comments if possible.
+    - '2'                                     -- Use indent from 2nd line of a paragraph.
 
 -- Message output.
 vim.opt.shortmess = {
@@ -164,11 +164,11 @@ vim.api.nvim_create_autocmd({ 'BufWritePre' }, {
 local keymap_opts = { silent = true }
 
 -- Helix-inspired keymaps.
-vim.keymap.set('n', 'U', '<C-r>', keymap_opts) -- Redo
-vim.keymap.set('n', 'gh', '^', keymap_opts) -- Goto line start
-vim.keymap.set('n', 'gl', '$', keymap_opts) -- Goto line end
-vim.keymap.set('n', 'ge', 'G', keymap_opts) -- Goto last line
-vim.keymap.set('n', 'gn', ':bnext<CR>', keymap_opts) -- Goto next buffer
+vim.keymap.set('n', 'U', '<C-r>', keymap_opts)           -- Redo
+vim.keymap.set('n', 'gh', '^', keymap_opts)              -- Goto line start
+vim.keymap.set('n', 'gl', '$', keymap_opts)              -- Goto line end
+vim.keymap.set('n', 'ge', 'G', keymap_opts)              -- Goto last line
+vim.keymap.set('n', 'gn', ':bnext<CR>', keymap_opts)     -- Goto next buffer
 vim.keymap.set('n', 'gp', ':bprevious<CR>', keymap_opts) -- Goto previous buffer
 
 -- Diagnostic keymaps.

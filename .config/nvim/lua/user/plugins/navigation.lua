@@ -96,21 +96,20 @@ return {
     config = function()
       local opts = {
         winopts = {
-          --border = 'none',
           preview = {
             title_align = 'center',
-            scrollbar = false,
+            scrollbar = 'float',
           },
         },
         fzf_opts = {
-          ['--ansi']   = '',
-          ['--info']   = 'inline',
-          ['--height'] = '100%',
-          ['--layout'] = 'reverse',
-          ['--border'] = 'none',
-          ['--prompt'] = '❯',
-          ['--pointer'] = '❯',
-          ['--marker'] = '❯',
+          ['--ansi']         = '',
+          ['--info']         = 'inline',
+          ['--height']       = '100%',
+          ['--layout']       = 'reverse',
+          ['--border']       = 'none',
+          ['--prompt']       = '❯',
+          ['--pointer']      = '❯',
+          ['--marker']       = '❯',
           ['--no-scrollbar'] = '',
         },
         fzf_colors = {
@@ -128,7 +127,10 @@ return {
           ['header'] = { 'fg', 'FzfLuaColorsHeader' },
         },
         keymap = {
-          builtin = {}, -- Delete all defaults.
+          builtin = {
+            ['<S-up>']   = 'preview-page-up',
+            ['<S-down>'] = 'preview-page-down',
+          }, -- Delete all defaults.
           fzf = {
             -- fzf '--bind=' options
             ['ctrl-d']     = 'abort',
