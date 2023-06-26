@@ -1,7 +1,7 @@
 -- UI-related plugins.
 
 return {
-  { 'rktjmp/lush.nvim', cmd = 'Lushify' },
+  { 'rktjmp/lush.nvim',       cmd = 'Lushify' },
   { 'rktjmp/shipwright.nvim', cmd = 'Shipwright' },
 
   {
@@ -10,7 +10,7 @@ return {
     priority = 1000,
     config = function()
       vim.o.termguicolors = true
-      vim.cmd [[colorscheme chroma-static]]
+      vim.cmd [[colorscheme mrsuit]]
     end,
   },
 
@@ -23,6 +23,15 @@ return {
   {
     'nvim-lualine/lualine.nvim',
     config = function()
+      local section_filename = {
+        'filename',
+        symbols = {
+          modified = '󱇨 ', -- Text to show when the file is modified.
+          readonly = '󱀰 ', -- Text to show when the file is non-modifiable or readonly.
+          unnamed = '󰡯 ', -- Text to show for unnamed buffers.
+          newfile = '󰻭 ', -- Text to show for newly created file before first write
+        },
+      }
       require 'lualine'.setup {
         options = {
           theme = {
@@ -78,17 +87,7 @@ return {
         },
         sections = {
           lualine_a = { 'mode' },
-          lualine_b = {
-            {
-              'filename',
-              symbols = {
-                modified = '󱇨 ', -- Text to show when the file is modified.
-                readonly = '󱀰 ', -- Text to show when the file is non-modifiable or readonly.
-                unnamed = '󰡯 ', -- Text to show for unnamed buffers.
-                newfile = '󰻭 ', -- Text to show for newly created file before first write
-              },
-            },
-          },
+          lualine_b = { section_filename },
           lualine_c = {
             {
               'lsp_info',
@@ -117,6 +116,14 @@ return {
           },
           lualine_y = { 'progress' },
           lualine_z = { 'location' },
+        },
+        inactive_sections = {
+          lualine_a = { 'mode' },
+          lualine_b = {},
+          lualine_c = { section_filename },
+          lualine_x = { 'location' },
+          lualine_y = {},
+          lualine_z = {}
         },
       }
     end,
