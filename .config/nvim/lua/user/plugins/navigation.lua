@@ -98,6 +98,7 @@ return {
       global_git_icons = false,
       global_file_icons = false,
       winopts = {
+        border  = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
         preview = {
           title_align = 'center',
           scrollbar = 'float',
