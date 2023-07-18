@@ -14,7 +14,6 @@ return {
           -- 'comment', -- PERF: Huge performance drop when using `comment`.
           'cpp',
           'diff',
-          'help',
           'java',
           'json',
           'kotlin',
@@ -26,6 +25,7 @@ return {
           'rst',
           'rust',
           'sql',
+          'vimdoc',
           'yaml',
         },
         highlight = { enable = true },
