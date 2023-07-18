@@ -26,10 +26,6 @@ return {
       local servers = {
         bashls = {},
         clangd = {},
-        cmake = {},
-        html = {},
-        pylsp = {},
-        yamlls = {},
         rust_analyzer = {},
         lua_ls = {
           Lua = {
