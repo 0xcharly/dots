@@ -24,7 +24,6 @@ return {
 
       -- Enable (and optionally configure) the following language servers.
       local servers = {
-        bashls = {},
         clangd = {},
         rust_analyzer = {},
         lua_ls = {
