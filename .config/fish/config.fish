@@ -29,8 +29,6 @@ if status is-interactive
     function fish_prompt
         set -l prompt_symbol '❯'
         fish_is_root_user; and set prompt_symbol '#'
-        set_color -r black
-        echo -n " * "
         set_color normal
         echo -n "" (format_pwd) (set_color brblue)
         echo -n $prompt_symbol (set_color normal)
