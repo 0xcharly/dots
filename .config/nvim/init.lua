@@ -20,33 +20,35 @@ company.setup()
 vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 
-require 'lazy'.setup('user.plugins', {
-  install = { colorscheme = { 'primebuddy', 'habamax' } },
-  ui = {
-    border = 'rounded',
-  },
-  change_detection = {
-    notify = false,
-  },
-  performance = {
-    rtp = {
-      disabled_plugins = {
-        'health',
-        'gzip',
-        'matchit',
-        -- 'matchparen',
-        -- 'netrwPlugin',
-        'rplugin',
-        'shada',
-        'spellfile',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
+if not vim.g.vscode then
+  require 'lazy'.setup('user.plugins', {
+    install = { colorscheme = { 'primebuddy', 'habamax' } },
+    ui = {
+      border = 'rounded',
+    },
+    change_detection = {
+      notify = false,
+    },
+    performance = {
+      rtp = {
+        disabled_plugins = {
+          'health',
+          'gzip',
+          'matchit',
+          -- 'matchparen',
+          -- 'netrwPlugin',
+          'rplugin',
+          'shada',
+          'spellfile',
+          'tarPlugin',
+          'tohtml',
+          'tutor',
+          'zipPlugin',
+        },
       },
     },
-  },
-})
+  })
+end
 
 -- Netrw plugin.
 vim.g.netrw_browse_split = 0
