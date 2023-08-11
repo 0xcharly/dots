@@ -1,80 +1,22 @@
 return {
-  -- Package manager for LSP/DAP servers, and other tools.
-  { 'williamboman/mason.nvim' },
-
+  -- LSP config.
   {
-    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
     dependencies = {
-      'neovim/nvim-lspconfig',
-      dependencies = {
-        { 'folke/neodev.nvim',   config = true },
-        { 'hrsh7th/cmp-nvim-lsp' },
-      },
+      { 'folke/neodev.nvim',   config = true }, -- Needs to be setup before lspconfig.
+      { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
-      -- nvim-cmp supports additional completion capabilities.
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities = require 'cmp_nvim_lsp'.default_capabilities(capabilities)
-      capabilities.textDocument = {
-        foldingRange = {
-          dynamicRegistration = false,
-          lineFoldingOnly = true,
-        },
-      }
+      local lspconfig = require 'lspconfig'
+      local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 
-      -- Enable (and optionally configure) the following language servers.
-      local servers = {
-        clangd = {},
-        rust_analyzer = {},
-        lua_ls = {
-          Lua = {
-            workspace = { checkThirdParty = false },
-            telemetry = { enable = false },
-            format = {
-              enable = true,
-              defaultConfig = {
-                call_arg_parentheses = 'remove',
-                indent_style = 'space',
-                quote_style = 'single',
-              },
-            },
-          },
-        },
-      }
+      local user_lsp_utils = require 'user.utils.lsp'
 
-      -- Ensure the commonly used servers are installed.
-      require 'mason'.setup { ui = { border = 'rounded', check_outdated_packages_on_open = true } }
+      -- Register servers.
+      user_lsp_utils.clangd_setup(lspconfig, cmp_nvim_lsp)
+      user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
 
-      local mason_lspconfig = require 'mason-lspconfig'
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(servers),
-      }
-
-      mason_lspconfig.setup_handlers {
-        function(server_name)
-          require 'lspconfig'[server_name].setup {
-            capabilities = capabilities,
-            on_attach = require 'user.utils.lsp'.user_on_attach,
-            settings = servers[server_name],
-          }
-        end,
-      }
-
-      -- Leading icon on diagnostic virtual text.
-      vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-        underline = true,
-        -- This sets the spacing and the prefix, obviously.
-        virtual_text = {
-          spacing = 4,
-          prefix = '  ',
-        },
-      })
-
-      local signs = require 'user.utils.lsp'.diagnostic_signs
-      for type, icon in pairs(signs) do
-        local hl = 'DiagnosticSign' .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-      end
+      user_lsp_utils.ui_tweaks() -- Adjust UI.
     end,
   },
 
