@@ -14,7 +14,8 @@ return {
 
       -- Register servers.
       user_lsp_utils.clangd_setup(lspconfig, cmp_nvim_lsp)
-      user_lsp_utils.dartls_setup(lspconfig, cmp_nvim_lsp)
+      -- The DartLS server is already configured by the flutter-tools plugin.
+      -- user_lsp_utils.dartls_setup(lspconfig, cmp_nvim_lsp)
       user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
 
       user_lsp_utils.ui_tweaks() -- Adjust UI.
@@ -42,9 +43,22 @@ return {
     lazy = false, -- TODO: Figure out the right laziness for this plugin.
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim',   -- optional for vim.ui.select
+      'stevearc/dressing.nvim', -- optional for vim.ui.select
     },
-    config = true,
+    config = function()
+      local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+      local user_lsp_utils = require 'user.utils.lsp'
+
+      require 'flutter-tools'.setup {
+        lsp = {
+          capabilities = user_lsp_utils.user_capabilities(cmp_nvim_lsp),
+          on_attach = user_lsp_utils.user_on_attach,
+          settings = {
+            lineLength = 100,
+          },
+        },
+      }
+    end,
   },
 
   {

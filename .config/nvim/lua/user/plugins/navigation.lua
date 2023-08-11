@@ -160,6 +160,13 @@ return {
       },
     },
     keys = {
+      -- "Smart" .files: calls git_files() if in a repository, files() otherwise.
+      { '<LocalLeader><space>', function()
+        local fzf_lua = require 'fzf-lua'
+        local git_root = fzf_lua.path.git_root({}, true)
+        if not git_root then return fzf_lua.files() end
+        return fzf_lua.git_files()
+      end },
       { '<LocalLeader>f', function() require 'fzf-lua'.files() end },
       { '<LocalLeader>j', function() require 'fzf-lua'.jumps() end },
       { '<LocalLeader>z', function() require 'fzf-lua'.builtin() end },
