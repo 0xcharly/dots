@@ -167,9 +167,6 @@ local keymap_opts = { silent = true }
 
 -- Helix-inspired keymaps.
 vim.keymap.set('n', 'U', '<C-r>', keymap_opts)           -- Redo
-vim.keymap.set('n', 'gh', '^', keymap_opts)              -- Goto line start
-vim.keymap.set('n', 'gl', '$', keymap_opts)              -- Goto line end
-vim.keymap.set('n', 'ge', 'G', keymap_opts)              -- Goto last line
 vim.keymap.set('n', 'gn', ':bnext<CR>', keymap_opts)     -- Goto next buffer
 vim.keymap.set('n', 'gp', ':bprevious<CR>', keymap_opts) -- Goto previous buffer
 

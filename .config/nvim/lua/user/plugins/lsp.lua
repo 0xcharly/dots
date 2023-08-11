@@ -14,6 +14,7 @@ return {
 
       -- Register servers.
       user_lsp_utils.clangd_setup(lspconfig, cmp_nvim_lsp)
+      user_lsp_utils.dartls_setup(lspconfig, cmp_nvim_lsp)
       user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
 
       user_lsp_utils.ui_tweaks() -- Adjust UI.
@@ -33,6 +34,17 @@ return {
         inlay_hints = { highlight = 'LspCodeLens' },
       },
     },
+  },
+
+  -- Enrich Dart/Flutter development.
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false, -- TODO: Figure out the right laziness for this plugin.
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim',   -- optional for vim.ui.select
+    },
+    config = true,
   },
 
   {

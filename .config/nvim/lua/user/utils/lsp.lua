@@ -26,7 +26,7 @@ function M.ui_tweaks()
 end
 
 -- This function gets run when an LSP connects to a particular buffer.
-function M.user_on_attach(_, bufnr)
+function M.user_on_attach(client, bufnr)
   -- Disable semantic tokens (overrides tree-sitter highlighting).
   -- client.server_capabilities.semanticTokensProvider = nil
 
@@ -47,7 +47,7 @@ function M.user_on_attach(_, bufnr)
 
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, buf_opts)
 
-  --vim.keymap.set('n', 'gl', vim.diagnostic.open_float, buf_opts)
+  vim.keymap.set('n', 'gl', vim.diagnostic.open_float, buf_opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, buf_opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, buf_opts)
 end
@@ -70,6 +70,17 @@ end
 -- https://clangd.llvm.org/installation.html
 function M.clangd_setup(lspconfig, cmp_nvim_lsp)
   lspconfig.clangd.setup {
+    capabilities = M.user_capabilities(cmp_nvim_lsp),
+    on_attach = M.user_on_attach,
+    settings = {},
+  }
+end
+
+-- Register the Dart/Flutter LSP (powered by DartLS).
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#dartls
+-- https://github.com/dart-lang/sdk/tree/master/pkg/analysis_server/tool/lsp_spec
+function M.dartls_setup(lspconfig, cmp_nvim_lsp)
+  lspconfig.dartls.setup {
     capabilities = M.user_capabilities(cmp_nvim_lsp),
     on_attach = M.user_on_attach,
     settings = {},
