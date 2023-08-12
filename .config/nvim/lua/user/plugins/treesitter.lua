@@ -2,7 +2,7 @@ return {
   { -- Language syntaxes.
     'nvim-treesitter/nvim-treesitter',
     dependencies = {
-      { 'nvim-treesitter/playground', cmd = 'TSPlaygroundToggle' },
+      { 'nvim-treesitter/playground',                 cmd = 'TSPlaygroundToggle' },
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
       { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
@@ -13,6 +13,7 @@ return {
           'c',
           -- 'comment', -- PERF: Huge performance drop when using `comment`.
           'cpp',
+          'dart',
           'diff',
           'java',
           'json',
@@ -29,14 +30,18 @@ return {
           'yaml',
         },
         highlight = { enable = true },
-        indent = { enable = true, disable = { 'python' } },
+        -- Disabled for Dart until #4945 is resolved.
+        -- TODO: reenable when resolved.
+        -- https://github.com/nvim-treesitter/nvim-treesitter/issues/4945
+        -- https://www.reddit.com/r/nvim/comments/147u8ln/nvim_lags_when_a_dart_file_is_opened/
+        indent = { enable = true, disable = { 'dart', 'python' } },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = '<leader>v', -- maps in normal mode to init the node/scope selection
+            init_selection = '<leader>v',   -- maps in normal mode to init the node/scope selection
             node_incremental = '<leader>v', -- increment to the upper named parent
             node_decremental = '<leader>V', -- decrement to the previous node
-            scope_incremental = 'grc', -- increment to the upper scope (as defined in locals.scm)
+            scope_incremental = 'grc',      -- increment to the upper scope (as defined in locals.scm)
           },
         },
         textobjects = {
@@ -75,7 +80,7 @@ return {
         playground = {
           enable = true,
           disable = {},
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          updatetime = 25,        -- Debounced time for highlighting nodes in the playground from source code
           persist_queries = true, -- Whether the query persists across vim sessions
           keybindings = {
             toggle_query_editor = 'o',

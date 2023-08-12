@@ -53,9 +53,7 @@ return {
         lsp = {
           capabilities = user_lsp_utils.user_capabilities(cmp_nvim_lsp),
           on_attach = user_lsp_utils.user_on_attach,
-          settings = {
-            lineLength = 100,
-          },
+          settings = user_lsp_utils.dartls_settings,
         },
       }
     end,

@@ -65,6 +65,10 @@ function M.user_capabilities(cmp_nvim_lsp)
   return capabilities
 end
 
+M.dartls_settings = {
+  lineLength = 100,
+}
+
 -- Register the C/C++ LSP (powered by clangd).
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
 -- https://clangd.llvm.org/installation.html
@@ -83,7 +87,7 @@ function M.dartls_setup(lspconfig, cmp_nvim_lsp)
   lspconfig.dartls.setup {
     capabilities = M.user_capabilities(cmp_nvim_lsp),
     on_attach = M.user_on_attach,
-    settings = {},
+    settings = M.dartls_settings,
   }
 end
 
