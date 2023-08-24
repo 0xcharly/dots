@@ -100,7 +100,7 @@ return {
       winopts = {
         border  = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
         preview = {
-          title_align = 'center',
+          title = false, -- Disable title as it throws on term://
           scrollbar = 'float',
         },
       },

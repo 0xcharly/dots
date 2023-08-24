@@ -50,6 +50,13 @@ return {
       local user_lsp_utils = require 'user.utils.lsp'
 
       require 'flutter-tools'.setup {
+        ui = {
+          notification_style = 'plugin',
+        },
+        closing_tags = {
+          highlight = 'LspCodeLens',
+          prefix = '</>'
+        },
         lsp = {
           capabilities = user_lsp_utils.user_capabilities(cmp_nvim_lsp),
           on_attach = user_lsp_utils.user_on_attach,

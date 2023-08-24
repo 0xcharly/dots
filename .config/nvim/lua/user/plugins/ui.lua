@@ -18,7 +18,33 @@ return {
   { 'nvim-tree/nvim-web-devicons', config = true },
 
   -- Git integration.
-  { 'lewis6991/gitsigns.nvim', config = true },
+  { 'lewis6991/gitsigns.nvim',     config = true },
+
+  -- Notifications.
+  {
+    'rcarriga/nvim-notify',
+    config = function()
+      vim.notify = require 'notify'
+      vim.notify.setup {
+        stages = 'fade',
+        render = 'simple',
+        fps = 60,
+      }
+    end,
+  },
+
+  -- Terminal manipulation.
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    config = {
+      open_mapping = [[<c-j>]],
+      direction = 'float',
+      float_opts = {
+        border = 'curved',
+      },
+    }
+  },
 
   {
     'nvim-lualine/lualine.nvim',
