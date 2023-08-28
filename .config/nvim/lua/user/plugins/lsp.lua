@@ -67,23 +67,6 @@ return {
   },
 
   {
-    -- Incremental LSP rename.
-    'smjonas/inc-rename.nvim',
-    cmd = 'IncRename',
-    config = true,
-    keys = {
-      {
-        '<LocalLeader>R',
-        function()
-          return ':IncRename ' .. vim.fn.expand '<cword>'
-        end,
-        expr = true,
-        desc = '[R]ename (LSP)'
-      },
-    },
-  },
-
-  {
     'jose-elias-alvarez/null-ls.nvim',
     config = function()
       local nls = require 'null-ls'
