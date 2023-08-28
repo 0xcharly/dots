@@ -64,7 +64,11 @@ local config = {
     inactive_titlebar_bg = mrsuit.colors.background,
   },
   -- https://wezfurlong.org/wezterm/config/lua/config/tab_bar_style.html
-  -- tab_bar_style = {},
+  -- tab_bar_style = {
+  --   window_hide = ' 󰍸 ',
+  --   window_maximize = ' 󰛴 ',
+  --   window_close = ' 󰅛 ',
+  -- },
   integrated_title_button_style = 'MacOsNative',
   -- Colorscheme load above and also used for the tab bar.
   colors = mrsuit.colors,

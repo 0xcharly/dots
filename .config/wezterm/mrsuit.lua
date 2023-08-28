@@ -84,15 +84,15 @@ mrsuit.colors = {
     -- Retro tab bar.
     active_tab = {
       fg_color = '#9fcdfe',
-      bg_color = '#203147',
+      bg_color = '#19222f',
     },
     inactive_tab = {
-      fg_color = '#b1c3d2',
-      bg_color = '#151b23',
+      fg_color = '#7d8590',
+      bg_color = '#21262d',
     },
     inactive_tab_hover = {
-      fg_color = '#89dceb',
-      bg_color = '#233a48',
+      fg_color = '#d3b5f2',
+      bg_color = '#21202f',
     },
   },
 }
