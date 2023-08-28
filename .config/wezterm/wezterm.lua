@@ -51,7 +51,7 @@ local config = {
   -- https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html
   window_decorations = 'INTEGRATED_BUTTONS|RESIZE',
   -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
-  window_padding = { top = 0, right = 0, bottom = 0, left = 0 },
+  window_padding = { top = 0, right = 6, bottom = 0, left = 6 },
   -- https://wezfurlong.org/wezterm/config/lua/config/window_frame.html
   window_frame = {
     -- The font used in the tab bar.
