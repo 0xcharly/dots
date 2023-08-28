@@ -36,6 +36,8 @@ local config = {
   -- Font size 14 for the best rendering.  Might be on the smaller side at some
   -- DPI/screen resolutions.
   font_size = 14,
+  -- https://wezfurlong.org/wezterm/config/lua/config/bold_brightens_ansi_colors.html
+  bold_brightens_ansi_colors = false,
   -- https://wezfurlong.org/wezterm/config/lua/config/enable_tab_bar.html
   enable_tab_bar = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html
