@@ -31,6 +31,8 @@
 !/.config/tmux/tmux.conf
 !/.config/wezterm
 !/.config/wezterm/*
+!/.config/zellij
+!/.config/zellij/*
 !/.gitignore.d
 !/.gitignore.d/dots
 !/.local
