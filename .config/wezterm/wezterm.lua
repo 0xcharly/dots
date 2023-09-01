@@ -31,7 +31,8 @@ local config = {
   -- term = 'wezterm',
 
   -- https://wezfurlong.org/wezterm/config/lua/config/font.html
-  font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font', 'Material Design Icons Desktop' },
+  font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font', 'Material Design Icons Desktop',
+    'Noto Serif CJK JP', },
   -- https://wezfurlong.org/wezterm/config/lua/config/font_size.html
   -- Font size 14 for the best rendering.  Might be on the smaller side at some
   -- DPI/screen resolutions.
