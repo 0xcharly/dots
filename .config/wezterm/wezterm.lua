@@ -58,7 +58,7 @@ local config = {
   -- https://wezfurlong.org/wezterm/config/lua/config/window_frame.html
   window_frame = {
     -- The font used in the tab bar.
-    font = wezterm.font { family = 'Google Sans Display', weight = 'Medium' },
+    font = wezterm.font { family = 'Atkinson Hyperlegible', weight = 'Bold' },
     -- The size of the font in the tab bar.
     font_size = 12.0,
     -- The overall background color of the tab bar when the window is focused.
