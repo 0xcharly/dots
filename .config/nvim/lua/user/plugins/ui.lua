@@ -26,6 +26,8 @@ return {
     config = function()
       vim.notify = require 'notify'
       vim.notify.setup {
+        max_width = 80,
+        timeout = 2500,
         stages = 'fade',
         render = 'simple',
         fps = 60,
