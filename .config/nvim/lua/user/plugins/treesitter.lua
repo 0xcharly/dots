@@ -9,12 +9,14 @@ return {
     config = function()
       require 'nvim-treesitter.configs'.setup {
         ensure_installed = {
+          'bash',
           'beancount',
           'c',
           -- 'comment', -- PERF: Huge performance drop when using `comment`.
           'cpp',
           'dart',
           'diff',
+          'fish',
           'java',
           'json',
           'kotlin',
