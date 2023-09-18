@@ -73,6 +73,7 @@ end
 
 M.dartls_settings = {
   lineLength = 100,
+  renameFilesWithClasses = 'always',
 }
 
 -- Register the C/C++ LSP (powered by clangd).

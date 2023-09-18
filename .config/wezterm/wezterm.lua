@@ -31,8 +31,14 @@ local config = {
   -- term = 'wezterm',
 
   -- https://wezfurlong.org/wezterm/config/lua/config/font.html
-  font = wezterm.font_with_fallback { 'Berkeley Mono', 'Symbols Nerd Font', 'Material Design Icons Desktop',
-    'Noto Serif JP', },
+  font = wezterm.font_with_fallback {
+    -- 'PragmataPro Mono Liga',
+    -- 'Fira Code',
+    'Berkeley Mono',
+    'Symbols Nerd Font',
+    'Material Design Icons Desktop',
+    'Noto Serif JP',
+  },
   -- https://wezfurlong.org/wezterm/config/lua/config/font_size.html
   -- Font size 14 for the best rendering.  Might be on the smaller side at some
   -- DPI/screen resolutions.
@@ -60,7 +66,7 @@ local config = {
     -- The font used in the tab bar.
     font = wezterm.font { family = 'Atkinson Hyperlegible', weight = 'Bold' },
     -- The size of the font in the tab bar.
-    font_size = 12.0,
+    font_size = 13.0,
     -- The overall background color of the tab bar when the window is focused.
     active_titlebar_bg = mrsuit.colors.background,
     -- The overall background color of the tab bar when the window is not focused.

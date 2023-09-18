@@ -3,7 +3,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'folke/neodev.nvim',   config = true }, -- Needs to be setup before lspconfig.
+      { 'folke/neodev.nvim',   config = true }, -- Needs to be setup before lspconfig
       { 'hrsh7th/cmp-nvim-lsp' },
     },
     config = function()
@@ -40,10 +40,11 @@ return {
   -- Enrich Dart/Flutter development.
   {
     'akinsho/flutter-tools.nvim',
-    lazy = false, -- TODO: Figure out the right laziness for this plugin.
+    lazy = false, -- TODO: Figure out the right laziness for this plugin
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for vim.ui.select
+      'stevearc/dressing.nvim',        -- optional for vim.ui.select
+      'nvim-telescope/telescope.nvim', -- Telescope integration
     },
     config = function()
       local cmp_nvim_lsp = require 'cmp_nvim_lsp'
@@ -52,6 +53,11 @@ return {
       require 'flutter-tools'.setup {
         ui = {
           notification_style = 'plugin',
+        },
+        dev_log = {
+          enabled = true,
+          notify_errors = true,
+          open_cmd = 'tabedit',
         },
         closing_tags = {
           highlight = 'LspCodeLens',
@@ -63,7 +69,17 @@ return {
           settings = user_lsp_utils.dartls_settings,
         },
       }
+
+      -- Telescope integration.
+      require 'telescope'.load_extension 'flutter'
     end,
+    keys = {
+      { '<LocalLeader>tc',  function() require 'telescope'.extensions.flutter.commands() end },
+      { '<LocalLeader>tR',  function() vim.cmd [[ FlutterRun ]] end },
+      { '<LocalLeader>tr',  function() vim.cmd [[ FlutterRestart ]] end },
+      { '<LocalLeader>tx',  function() vim.cmd [[ FlutterQuit ]] end },
+      { '<LocalLeader>tlr', function() vim.cmd [[ FlutterRename ]] end },
+    },
   },
 
   {
