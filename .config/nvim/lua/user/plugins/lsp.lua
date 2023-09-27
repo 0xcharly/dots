@@ -17,6 +17,7 @@ return {
       -- The DartLS server is already configured by the flutter-tools plugin.
       -- user_lsp_utils.dartls_setup(lspconfig, cmp_nvim_lsp)
       user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
+      user_lsp_utils.pylsp_setup(lspconfig, cmp_nvim_lsp)
 
       user_lsp_utils.ui_tweaks() -- Adjust UI.
     end,

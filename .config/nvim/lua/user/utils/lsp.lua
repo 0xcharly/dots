@@ -98,6 +98,26 @@ function M.dartls_setup(lspconfig, cmp_nvim_lsp)
   }
 end
 
+-- Register the Python LSP (powered by pylsp).
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pylsp
+-- https://github.com/python-lsp/python-lsp-server
+function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
+  lspconfig.pylsp.setup {
+    capabilities = M.user_capabilities(cmp_nvim_lsp),
+    on_attach = M.user_on_attach,
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            --ignore = {'W391'},
+            maxLineLength = 100
+          }
+        }
+      },
+    },
+  }
+end
+
 -- Register the Lua server (powered by lua-language-server).
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#lua_ls
 -- https://github.com/luals/lua-language-server
