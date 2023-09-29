@@ -107,11 +107,18 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
     on_attach = M.user_on_attach,
     settings = {
       pylsp = {
+        formatCommand = { "yapf3" },
         plugins = {
+          autopep8 = { enabled = false }, -- Required to use yapf.
           pycodestyle = {
             --ignore = {'W391'},
-            maxLineLength = 100
-          }
+            maxLineLength = 100,
+            indentSize = 2,
+          },
+          yapf = {
+            enabled = true,
+            args = '--style={based_on_style: google, indent_width: 2}',
+          },
         }
       },
     },
