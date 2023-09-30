@@ -31,6 +31,8 @@
 !/.config/tmux/tmux.conf
 !/.config/wezterm
 !/.config/wezterm/*
+!/.config/yapf/
+!/.config/yapf/style
 !/.config/zellij
 !/.config/zellij/*
 !/.gitignore.d

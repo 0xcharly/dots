@@ -55,6 +55,10 @@ vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
+-- Disable overrides by the VIM runtime ftpugin/python.vim.
+-- https://github.com/neovim/neovim/commit/2648c3579a4d274ee46f83db1bd63af38fa9e0a7
+vim.g.python_recommended_style = 0
+
 -- Mouse support.
 vim.o.mouse = 'a'
 

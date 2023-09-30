@@ -47,7 +47,9 @@ function M.user_on_attach(client, bufnr)
   vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, buf_opts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, buf_opts)
   vim.keymap.set('n', '<LocalLeader>r', vim.lsp.buf.rename, buf_opts)
-  vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, buf_opts)
+  vim.keymap.set('n', '<leader>cf', function()
+    vim.lsp.buf.format { async = true, }
+  end, buf_opts)
   vim.keymap.set('n', '<LocalLeader>a', vim.lsp.buf.code_action, buf_opts)
   vim.keymap.set('x', '<LocalLeader>a', vim.lsp.buf.code_action, buf_opts)
 
@@ -107,7 +109,6 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
     on_attach = M.user_on_attach,
     settings = {
       pylsp = {
-        formatCommand = { "yapf3" },
         plugins = {
           autopep8 = { enabled = false }, -- Required to use yapf.
           pycodestyle = {
@@ -115,6 +116,7 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
             maxLineLength = 100,
             indentSize = 2,
           },
+          rope_autoimport = { enabled = true },
           yapf = {
             enabled = true,
             args = '--style={based_on_style: google, indent_width: 2}',
