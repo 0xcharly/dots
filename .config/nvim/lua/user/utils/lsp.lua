@@ -112,7 +112,9 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
         plugins = {
           autopep8 = { enabled = false }, -- Required to use yapf.
           pycodestyle = {
-            --ignore = {'W391'},
+            ignore = {
+              'W504', -- Line break after binary operator.
+            },
             maxLineLength = 100,
             indentSize = 2,
           },
