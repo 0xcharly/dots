@@ -119,7 +119,7 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
             maxLineLength = 100,
             indentSize = 2,
           },
-          rope_autoimport = { enabled = true },
+          rope_autoimport = { enabled = false },
           yapf = {
             enabled = true,
             args = '--style={based_on_style: google, indent_width: 2}',
