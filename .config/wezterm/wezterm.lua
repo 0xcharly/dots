@@ -47,7 +47,7 @@ local config = {
 
 -- Catppuccin theme using Wezterm's experimental plugin support.
 wezterm.plugin.require 'https://github.com/catppuccin/wezterm'.apply_to_config(config, {
-  accent = 'sky',
+  accent = 'lavender',
 })
 
 return config

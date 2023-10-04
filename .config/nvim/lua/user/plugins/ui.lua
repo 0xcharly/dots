@@ -15,16 +15,6 @@ return {
     end,
   },
 
-  -- {
-  --   '0xcharly/chroma.nvim',
-  --   lazy = false,
-  --   priority = 1000,
-  --   config = function()
-  --     vim.o.termguicolors = true
-  --     vim.cmd [[colorscheme mrsuit]]
-  --   end,
-  -- },
-
   -- Iconography.
   { 'nvim-tree/nvim-web-devicons', config = true },
 
