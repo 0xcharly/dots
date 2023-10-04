@@ -113,6 +113,7 @@ function M.pylsp_setup(lspconfig, cmp_nvim_lsp)
           autopep8 = { enabled = false }, -- Required to use yapf.
           pycodestyle = {
             ignore = {
+              'E126', -- TODO: figure out why.
               'W504', -- Line break after binary operator.
             },
             maxLineLength = 100,
