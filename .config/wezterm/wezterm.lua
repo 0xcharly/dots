@@ -1,35 +1,6 @@
 local wezterm = require 'wezterm'
-local mrsuit = require 'mrsuit'
-
-function tab_title(tab_info)
-  local title = tab_info.tab_title
-  -- if the tab title is explicitly set, take that
-  if title and #title > 0 then
-    return title
-  end
-  -- Otherwise, use the title from the active pane
-  -- in that tab
-  return tab_info.active_pane.title
-end
-
-wezterm.on(
-  'format-tab-title',
-  function(tab, tabs, panes, config, hover, max_width)
-    local title = tab.tab_title
-    -- if the tab title is explicitly set, take that.
-    if title and #title > 0 then
-      return title
-    end
-    -- Otherwise, use the title from the active pane in that tab.
-    return tab.active_pane.title
-  end
-)
 
 local config = {
-  -- Spawn a fish shell in login mode
-  -- default_prog = { "/opt/homebrew/bin/fish", "-l" },
-  -- term = 'wezterm',
-
   -- https://wezfurlong.org/wezterm/config/lua/config/font.html
   font = wezterm.font_with_fallback {
     -- 'PragmataPro Mono Liga',
@@ -48,39 +19,19 @@ local config = {
   -- https://wezfurlong.org/wezterm/config/lua/config/enable_tab_bar.html
   enable_tab_bar = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html
-  use_fancy_tab_bar = true,
+  use_fancy_tab_bar = false,
+  -- https://wezfurlong.org/wezterm/config/lua/config/tab_bar_at_bottom.html?h=tab_bar
+  tab_bar_at_bottom = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/hide_tab_bar_if_only_one_tab.html
-  hide_tab_bar_if_only_one_tab = false,
+  hide_tab_bar_if_only_one_tab = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/show_new_tab_button_in_tab_bar.html
   show_new_tab_button_in_tab_bar = false,
   -- https://wezfurlong.org/wezterm/config/lua/config/show_tab_index_in_tab_bar.html
-  show_tab_index_in_tab_bar = false,
+  show_tab_index_in_tab_bar = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/show_tabs_in_tab_bar.html
   show_tabs_in_tab_bar = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html
-  window_decorations = 'INTEGRATED_BUTTONS|RESIZE',
-  -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
-  window_padding = { top = 0, right = 6, bottom = 0, left = 6 },
-  -- https://wezfurlong.org/wezterm/config/lua/config/window_frame.html
-  window_frame = {
-    -- The font used in the tab bar.
-    font = wezterm.font { family = 'Atkinson Hyperlegible', weight = 'Bold' },
-    -- The size of the font in the tab bar.
-    font_size = 13.0,
-    -- The overall background color of the tab bar when the window is focused.
-    active_titlebar_bg = mrsuit.colors.background,
-    -- The overall background color of the tab bar when the window is not focused.
-    inactive_titlebar_bg = mrsuit.colors.background,
-  },
-  -- https://wezfurlong.org/wezterm/config/lua/config/tab_bar_style.html
-  -- tab_bar_style = {
-  --   window_hide = ' 󰍸 ',
-  --   window_maximize = ' 󰛴 ',
-  --   window_close = ' 󰅛 ',
-  -- },
-  integrated_title_button_style = 'MacOsNative',
-  -- Colorscheme load above and also used for the tab bar.
-  colors = mrsuit.colors,
+  window_decorations = 'RESIZE',
   -- Some common hyperlink rules.
   hyperlink_rules = {
     { regex = '\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b', format = '$0' },
@@ -93,5 +44,10 @@ local config = {
     },
   },
 }
+
+-- Catppuccin theme using Wezterm's experimental plugin support.
+wezterm.plugin.require 'https://github.com/catppuccin/wezterm'.apply_to_config(config, {
+  accent = 'sky',
+})
 
 return config
