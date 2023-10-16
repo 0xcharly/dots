@@ -31,7 +31,9 @@ local config = {
   -- https://wezfurlong.org/wezterm/config/lua/config/show_tabs_in_tab_bar.html
   show_tabs_in_tab_bar = true,
   -- https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html
-  window_decorations = 'RESIZE',
+  window_decorations = 'INTEGRATED_BUTTONS|RESIZE',
+  -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
+  window_padding = { top = 48 },
   -- Some common hyperlink rules.
   hyperlink_rules = {
     { regex = '\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b', format = '$0' },

@@ -80,107 +80,79 @@ return {
     },
   },
 
-  -- FZF-based fuzzy finder (more responsive).
-  -- {
-  --   'ibhagwan/fzf-lua',
-  --   dependencies = { 'nvim-tree/nvim-web-devicons' },
-  --   config = {
-  --     -- Disable icons.
-  --     global_git_icons = false,
-  --     global_file_icons = false,
-  --     winopts = {
-  --       border  = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' },
-  --       preview = {
-  --         title = false, -- Disable title as it throws on term://
-  --         scrollbar = 'float',
-  --       },
-  --     },
-  --     fzf_opts = {
-  --       ['--ansi']         = '',
-  --       ['--info']         = 'inline',
-  --       ['--height']       = '100%',
-  --       ['--layout']       = 'reverse',
-  --       ['--border']       = 'none',
-  --       ['--prompt']       = '❯',
-  --       ['--pointer']      = '❯',
-  --       ['--marker']       = '❯',
-  --       ['--no-scrollbar'] = '',
-  --     },
-  --     fzf_colors = {
-  --       ['fg'] = { 'fg', 'FzfLuaColorsFg' },
-  --       ['fg+'] = { 'fg', 'FzfLuaColorsFgSel', 'reverse:-1' },
-  --       ['bg'] = { 'fg', 'FzfLuaColorsBg' },
-  --       ['bg+'] = { 'fg', 'FzfLuaColorsBgSel' },
-  --       ['hl'] = { 'fg', 'FzfLuaColorsHl' },
-  --       ['hl+'] = { 'fg', 'FzfLuaColorsHlSel', 'underline:reverse:-1' },
-  --       ['info'] = { 'fg', 'FzfLuaColorsInfo' },
-  --       ['gutter'] = { 'fg', 'FzfLuaColorsGutter' },
-  --       ['prompt'] = { 'fg', 'FzfLuaColorsPrompt' },
-  --       ['pointer'] = { 'fg', 'FzfLuaColorsPointer' },
-  --       ['marker'] = { 'fg', 'FzfLuaColorsMarker' },
-  --       ['spinner'] = { 'fg', 'FzfLuaColorsSpinner' },
-  --       ['header'] = { 'fg', 'FzfLuaColorsHeader' },
-  --     },
-  --     keymap = {
-  --       builtin = {
-  --         ['<S-up>']   = 'preview-page-up',
-  --         ['<S-down>'] = 'preview-page-down',
-  --       }, -- Delete all defaults.
-  --       fzf = {
-  --         -- fzf '--bind=' options
-  --         ['ctrl-d']     = 'abort',
-  --         ['ctrl-u']     = 'unix-line-discard',
-  --         ['ctrl-f']     = 'half-page-down',
-  --         ['ctrl-b']     = 'half-page-up',
-  --         ['ctrl-a']     = 'beginning-of-line',
-  --         ['ctrl-e']     = 'end-of-line',
-  --         ['alt-a']      = 'toggle-all',
-  --         -- Only valid with fzf previewers (bat/cat/git/etc)
-  --         ['shift-down'] = 'preview-page-down',
-  --         ['shift-up']   = 'preview-page-up',
-  --       },
-  --     },
-  --     previewers = {
-  --       builtin = {
-  --         extensions = {
-  --           png = { 'viu', '-b' },
-  --           jpg = { 'kitty', '+kitten', 'icat' },
-  --           jpeg = { 'kitty', '+kitten', 'icat' },
-  --         }
-  --       }
-  --     },
-  --   },
-  --   keys = {
-  --     -- "Smart" .files: calls git_files() if in a repository, files() otherwise.
-  --     { '<LocalLeader><space>', function()
-  --       local fzf_lua = require 'fzf-lua'
-  --       local git_root = fzf_lua.path.git_root({}, true)
-  --       if not git_root then return fzf_lua.files() end
-  --       return fzf_lua.git_files()
-  --     end },
-  --     { '<LocalLeader>f', function() require 'fzf-lua'.files() end },
-  --     { '<LocalLeader>j', function() require 'fzf-lua'.jumps() end },
-  --     { '<LocalLeader>z', function() require 'fzf-lua'.builtin() end },
-  --     { '<LocalLeader>b', function() require 'fzf-lua'.buffers() end },
-  --     { '<C-p>',          function() require 'fzf-lua'.git_files() end },
-  --     { '<LocalLeader>g', function() require 'fzf-lua'.live_grep() end },
-  --     { '<LocalLeader>h', function() require 'fzf-lua'.highlights() end },
-  --     { '<LocalLeader>?', function() require 'fzf-lua'.help_tags() end },
-  --     { '<LocalLeader>s', function() require 'fzf-lua'.lsp_document_symbols() end },
-  --     { '<LocalLeader>S', function() require 'fzf-lua'.lsp_dynamic_workspace_symbols() end },
-  --     {
-  --       '<LocalLeader>.',
-  --       function()
-  --         require 'fzf-lua'.files {
-  --           prompt = '.files  ',
-  --           cwd_prompt = false,
-  --           fd_opts = '--type f --exclude raycast/ --exclude vcsh/',
-  --           rg_opts = "--color=always --smart-case -g '!{raycast,vcsh}/'",
-  --           find_opts = "-type f -not -path '*/vcsh/*' -not -path '*/raycast/*'",
-  --           cwd = '~/.config',
-  --         }
-  --       end
-  --     },
-  --   },
-  -- },
+  {
+    'FeiyouG/commander.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    keys = {
+      { '<C-p>', '<CMD>Telescope commander<CR>', mode = 'n' },
+    },
+    config = true,
+  },
+
+  {
+    'Cassin01/wf.nvim',
+    config = function()
+      require 'wf'.setup { theme = 'space' }
+
+      local which_key = require 'wf.builtin.which_key'
+      local register = require 'wf.builtin.register'
+      local bookmark = require 'wf.builtin.bookmark'
+      local buffer = require 'wf.builtin.buffer'
+      local mark = require 'wf.builtin.mark'
+
+      -- Register
+      vim.keymap.set(
+        'n',
+        '<Space>wr',
+        -- register(opts?: table) -> function
+        -- opts?: option
+        register(),
+        { noremap = true, silent = true, desc = '[wf.nvim] register' }
+      )
+
+      -- Bookmark
+      vim.keymap.set(
+        'n',
+        '<Space>wbo',
+        -- bookmark(bookmark_dirs: table, opts?: table) -> function
+        -- bookmark_dirs: directory or file paths
+        -- opts?: option
+        bookmark {
+          nvim = '~/.config/nvim',
+          zsh = '~/.zshrc',
+        },
+        { noremap = true, silent = true, desc = '[wf.nvim] bookmark' }
+      )
+
+      -- Buffer
+      vim.keymap.set(
+        'n',
+        '<Space>wbu',
+        -- buffer(opts?: table) -> function
+        -- opts?: option
+        buffer(),
+        { noremap = true, silent = true, desc = '[wf.nvim] buffer' }
+      )
+
+      -- Mark
+      vim.keymap.set(
+        'n',
+        "'",
+        -- mark(opts?: table) -> function
+        -- opts?: option
+        mark(),
+        { nowait = true, noremap = true, silent = true, desc = '[wf.nvim] mark' }
+      )
+
+      -- Which Key
+      vim.keymap.set(
+        'n',
+        '<Leader>',
+        -- mark(opts?: table) -> function
+        -- opts?: option
+        which_key { text_insert_in_advance = '<Leader>' },
+        { noremap = true, silent = true, desc = '[wf.nvim] which-key /', }
+      )
+    end,
+  },
 }
