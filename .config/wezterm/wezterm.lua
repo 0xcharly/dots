@@ -1,77 +1,59 @@
 local wezterm = require 'wezterm'
 
--- The filled in variant of the < symbol
-local SOLID_LEFT_ARROW = wezterm.nerdfonts.pl_right_hard_divider
-
--- The filled in variant of the > symbol
-local SOLID_RIGHT_ARROW = wezterm.nerdfonts.pl_left_hard_divider
-
--- This function returns the suggested title for a tab.
--- It prefers the title that was set via `tab:set_title()`
--- or `wezterm cli set-tab-title`, but falls back to the
--- title of the active pane in that tab.
 local function tab_title(tab_info)
   local title = tab_info.tab_title
-  -- if the tab title is explicitly set, take that
+  -- If the tab title is explicitly set, take that.
   if title and #title > 0 then
     return title
   end
-  -- Otherwise, use the title from the active pane
-  -- in that tab
+  -- Otherwise, use the title from the active pane in that tab.
   return tab_info.active_pane.title
 end
 
-local function dump(o)
-   if type(o) == 'table' then
-      local s = '{ '
-      for k,v in pairs(o) do
-         if type(k) ~= 'number' then k = '"'..k..'"' end
-         s = s .. '['..k..'] = ' .. dump(v) .. ','
-      end
-      return s .. '} '
-   else
-      return tostring(o)
-   end
-end
-
--- package.path = package.path .. ';/Users/delay'
--- local inspect = require 'inspect'
+local LEFT_SLANT = wezterm.nerdfonts.ple_lower_right_triangle
+local RIGHT_SLANT = wezterm.nerdfonts.ple_upper_left_triangle
 
 wezterm.on(
   'format-tab-title',
   function(tab, tabs, panes, config, hover, max_width)
-     -- wezterm.log_warn(string.format("%s", inspect(config)));
-    local tab_bar_colors = config.resolved_palette.tab_bar
-    local edge_background = '#0b0022'
-    local background = tab_bar_colors.background
-    local foreground = '#808080'
+    local tab_bar_background = config.resolved_palette.ansi[8]
+    local intensity = 'Normal'
+    local index_color = config.resolved_palette.brights[8]
+    local title_color = config.resolved_palette.brights[8]
 
     if tab.is_active then
-      background = tab_bar_colors.active_tab.bg_color
-      foreground = tab_bar_colors.active_tab.fg_color
-    elseif hover then
-      background = tab_bar_colors.inactive_tab_hover.bg_color
-      foreground = tab_bar_colors.inactive_tab_hover.fg_color
+      intensity = 'Bold'
+      index_color = config.resolved_palette.ansi[2]
+      title_color = config.resolved_palette.foreground
     end
 
-    local edge_foreground = background
-
     local title = tab_title(tab)
+    local index_prefix = string.format('%d:', tab.tab_index)
+    local title_with_index = string.format('%s %s', index_prefix, title)
 
-    -- ensure that the titles fit in the available space,
-    -- and that we have room for the edges.
-    title = wezterm.truncate_right(title, max_width - 2)
+    -- Ensure that the titles fit in the available space, and that we have room
+    -- for the edges.
+    local fitted_title = wezterm.truncate_right(title, max_width - 4)
+    local fitted_title_with_index = wezterm.truncate_right(title_with_index, max_width - 4)
+    if fitted_title_with_index ~= title_with_index then
+      -- Add an ellipsis if the text was truncated.
+      fitted_title = wezterm.truncate_right(fitted_title, #fitted_title_with_index - #index_prefix - 2) .. '…'
+    end
 
     return {
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = SOLID_LEFT_ARROW },
-      { Background = { Color = background } },
-      { Foreground = { Color = foreground } },
-      { Text = title },
-      { Background = { Color = edge_background } },
-      { Foreground = { Color = edge_foreground } },
-      { Text = SOLID_RIGHT_ARROW },
+      { Background = { Color = tab_bar_background } },
+      { Foreground = { Color = config.resolved_palette.background } },
+      { Text = LEFT_SLANT },
+      { Background = { Color = config.resolved_palette.background } },
+      { Foreground = { Color = index_color } },
+      { Attribute = { Intensity = intensity } },
+      { Text = ' ' },
+      { Text = index_prefix },
+      { Foreground = { Color = title_color } },
+      { Text = ' ' .. fitted_title .. ' ' },
+      { Background = { Color = tab_bar_background } },
+      { Foreground = { Color = config.resolved_palette.background } },
+      { Text = RIGHT_SLANT },
     }
   end
 )
@@ -100,6 +82,8 @@ config.enable_tab_bar = true
 config.use_fancy_tab_bar = false
 -- https://wezfurlong.org/wezterm/config/lua/config/tab_bar_at_bottom.html?h=tab_bar
 config.tab_bar_at_bottom = false
+-- https://wezfurlong.org/wezterm/config/lua/config/tab_max_width.html
+config.tab_max_width = 32
 -- https://wezfurlong.org/wezterm/config/lua/config/hide_tab_bar_if_only_one_tab.html
 config.hide_tab_bar_if_only_one_tab = false
 -- https://wezfurlong.org/wezterm/config/lua/config/show_new_tab_button_in_tab_bar.html
@@ -129,8 +113,16 @@ config.hyperlink_rules = {
 }
 
 -- Catppuccin theme using Wezterm's experimental plugin support.
+local catppuccin_mocha = wezterm.color.get_builtin_schemes()["Catppuccin Mocha"]
 wezterm.plugin.require 'https://github.com/catppuccin/wezterm'.apply_to_config(config, {
   accent = 'lavender',
+  token_overrides = {
+    mocha = {
+      tab_bar = {
+        background = catppuccin_mocha.ansi[8],
+      },
+    },
+  },
 })
 
 return config
