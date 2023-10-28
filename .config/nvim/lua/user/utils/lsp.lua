@@ -15,7 +15,7 @@ function M.ui_tweaks()
       underline = true,
       virtual_text = {
         spacing = 4,
-        prefix = '  ',
+        prefix = ' ',
       },
     })
 
