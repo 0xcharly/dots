@@ -65,6 +65,7 @@ local config = wezterm.config_builder()
 config.font = wezterm.font_with_fallback {
   -- 'PragmataPro Mono Liga',
   -- 'Fira Code',
+  'Dank Mono',
   'Berkeley Mono',
   'Symbols Nerd Font',
   'Material Design Icons Desktop',
