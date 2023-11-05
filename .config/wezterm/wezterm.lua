@@ -65,11 +65,47 @@ local config = wezterm.config_builder()
 config.font = wezterm.font_with_fallback {
   -- 'PragmataPro Mono Liga',
   -- 'Fira Code',
-  'Dank Mono',
-  'Berkeley Mono',
+  'Victor Mono',
+  -- 'Dank Mono',
+  -- 'Berkeley Mono',
   'Symbols Nerd Font',
   'Material Design Icons Desktop',
   'Noto Serif JP',
+}
+-- config.font = wezterm.font { family = 'Operator Mono', weight = 'DemiLight' }
+config.font_rules = {
+  -- Bold-and-italic
+  {
+    intensity = 'Bold',
+    italic = true,
+    font = wezterm.font {
+      family = 'Victor Mono',
+      weight = 'Bold',
+      style = 'Oblique',
+    },
+  },
+
+  -- Normal-intensity-and-italic
+  {
+    intensity = 'Normal',
+    italic = true,
+    font = wezterm.font {
+      family = 'Victor Mono',
+      weight = 'Regular',
+      style = 'Oblique',
+    },
+  },
+
+  -- Normal-intensity-and-italic
+  {
+    intensity = 'Half',
+    italic = true,
+    font = wezterm.font {
+      family = 'Victor Mono',
+      weight = 'DemiBold',
+      style = 'Oblique',
+    },
+  },
 }
 -- https://wezfurlong.org/wezterm/config/lua/config/font_size.html
 -- Font size 14 for the best rendering.  Might be on the smaller side at some
