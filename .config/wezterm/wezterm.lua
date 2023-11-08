@@ -70,7 +70,7 @@ config.font = wezterm.font_with_fallback {
   -- 'Berkeley Mono',
   'Symbols Nerd Font',
   'Material Design Icons Desktop',
-  'Noto Serif JP',
+  'Motomachi',
 }
 -- config.font = wezterm.font { family = 'Operator Mono', weight = 'DemiLight' }
 config.font_rules = {
