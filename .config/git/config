@@ -1,43 +1,43 @@
 [user]
-  name = Charly Delay
-  email = charly@delay.gg
+name = Charly Delay
+email = charly@delay.gg
 [core]
-  editor = nvim
-  excludesFile = ~/.config/git/ignore
-	pager = delta
+editor = nvim
+excludesFile = ~/.config/git/ignore
+pager = delta
 [init]
-	defaultBranch = main
+defaultBranch = main
 [submodule]
-	recurse = false
+recurse = false
 [pull]
-	rebase = true
+rebase = true
 [branch]
-	sort = authordate
+sort = authordate
 [interactive]
-	diffFilter = delta --color-only
+diffFilter = delta --color-only
 [diff]
-	tool = nvimdiff
+tool = nvimdiff
 [difftool "nvimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE
+cmd = nvim -d $LOCAL $REMOTE
 [merge]
-	tool = nvimmerge
-	conflictstyle = zdiff3
+tool = nvimmerge
+conflictstyle = zdiff3
 [mergetool]
-	hideResolved = true
+hideResolved = true
 [mergetool "nvimmerge"]
-	cmd = nvim -d "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
+cmd = nvim -d "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
 [delta]
-	features = line-numbers decorations
-	whitespace-error-style = 22 reverse
-	syntax-theme = base16
+features = line-numbers decorations
+whitespace-error-style = 22 reverse
+syntax-theme = base16
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
 [alias]
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an> %Cgreen(%cr)%Creset' --abbrev-commit
+lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an> %Cgreen(%cr)%Creset' --abbrev-commit
 [credential "https://github.com"]
-	helper = !gh auth git-credential
+helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = !gh auth git-credential
+helper = !gh auth git-credential
