@@ -135,6 +135,10 @@ config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.integrated_title_buttons = { 'Close' }
 -- https://wezfurlong.org/wezterm/config/lua/config/integrated_title_button_style.html
 config.integrated_title_button_style = 'Gnome'
+-- https://wezfurlong.org/wezterm/config/lua/config/initial_cols.html
+config.initial_cols = 120
+-- https://wezfurlong.org/wezterm/config/lua/config/initial_rows.html
+config.initial_rows = 30
 -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
 --window_padding = { top = 48 },
 -- Some common hyperlink rules.
