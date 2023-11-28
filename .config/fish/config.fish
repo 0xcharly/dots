@@ -27,11 +27,12 @@ if status is-interactive
     end
 
     function fish_prompt
-        set -l prompt_symbol '❯'
-        fish_is_root_user; and set prompt_symbol '#'
-        set_color brblack
-        echo -n (date "+%H:%M:%S") (format_pwd) (set_color brblue)
-        echo -n $prompt_symbol (set_color normal)
+        set_color "#a6adc8"
+        set_color -b "#313244"
+        echo -n "" (date "+%H:%M:%S") ""
+        echo -n (format_pwd)
+        set_color normal
+        echo -n " "
     end
 
     function format_pwd
@@ -42,20 +43,16 @@ if status is-interactive
             # Rename the current tab.
             title $citc_space
 
-            # Echo the citc space name.
-            set_color white
-            echo -n "("
-            set_color brblue
-            echo -n citc
-            set_color white
-            echo -n ":"
-            set_color brgreen
-            echo -n $citc_space
-            set_color white
-            echo -n ")"
+            set_color --bold "#1e1e2e"
+            set_color --background "#89b4fa"
+            echo -n " $citc_space "
         else
-            set_color green
-            echo (prompt_pwd)
+            set -l pwd_segment_bg_color "#a6e3a1"
+            fish_is_root_user; and set pwd_segment_bg_color "#f38ba8"
+
+            set_color --bold "#1e1e2e"
+            set_color -b $pwd_segment_bg_color
+            echo -n "" (prompt_pwd) ""
         end
     end
 end
