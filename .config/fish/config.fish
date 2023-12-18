@@ -1,5 +1,6 @@
 if status is-interactive
     set fish_greeting # Disable greeting message.
+    set -g fish_term24bit 1 # Enable true color support.
 
     test -x /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
     test -d $HOME/.local/bin && fish_add_path $HOME/.local/bin
@@ -16,9 +17,6 @@ if status is-interactive
 
     set -Ux HOMEBREW_NO_AUTO_UPDATE 1
     set -Ux MANPAGER "nvim +Man!"
-
-    # Set if your term supports `pipenv shell --fancy`.
-    set pipenv_fish_fancy yes
 
     bind \cf ~/.local/bin/open-tmux-workspace
     bind -M insert \cf ~/.local/bin/open-tmux-workspace
