@@ -1,9 +1,6 @@
 -- UI-related plugins.
 
 return {
-  { 'rktjmp/lush.nvim',       cmd = 'Lushify' },
-  { 'rktjmp/shipwright.nvim', cmd = 'Shipwright' },
-
   {
     'catppuccin/nvim',
     name = 'catppuccin',
@@ -20,34 +17,6 @@ return {
 
   -- Git integration.
   { 'lewis6991/gitsigns.nvim',     config = true },
-
-  -- Notifications.
-  {
-    'rcarriga/nvim-notify',
-    config = function()
-      vim.notify = require 'notify'
-      vim.notify.setup {
-        max_width = 80,
-        timeout = 2500,
-        stages = 'fade',
-        render = 'simple',
-        fps = 60,
-      }
-    end,
-  },
-
-  -- Terminal manipulation.
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    config = {
-      open_mapping = [[<c-j>]],
-      direction = 'float',
-      float_opts = {
-        border = 'curved',
-      },
-    }
-  },
 
   {
     'nvim-lualine/lualine.nvim',
