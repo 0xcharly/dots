@@ -5,7 +5,8 @@ return {
       { 'nvim-treesitter/nvim-treesitter-textobjects' },
       { 'JoosepAlviste/nvim-ts-context-commentstring' },
     },
-    config = function()
+    build = ':TSUpdate',
+    config = function() ---@diagnostic disable: missing-fields
       require 'nvim-treesitter.configs'.setup {
         ensure_installed = {
           'bash',
@@ -30,6 +31,8 @@ return {
           'vimdoc',
           'yaml',
         },
+        sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
+        auto_install = false, -- Automatically install missing parsers when entering buffer
         highlight = { enable = true },
         -- Disabled for Dart until #4945 is resolved.
         -- TODO: reenable when resolved.

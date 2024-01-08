@@ -1,5 +1,38 @@
 return {
-  -- Search engines.
+  {
+    'github/copilot.vim',
+    cond = not require 'user.utils.company'.is_corporate_host(),
+  },
+
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    keys = {
+      { '<leader>xx', function() require 'trouble'.toggle() end },
+      { '<leader>xw', function() require 'trouble'.toggle 'workspace_diagnostics' end },
+      { '<leader>xd', function() require 'trouble'.toggle 'document_diagnostics' end },
+      { '<leader>xq', function() require 'trouble'.toggle 'quickfix' end },
+      { '<leader>xl', function() require 'trouble'.toggle 'loclist' end },
+      { 'gR',         function() require 'trouble'.toggle 'lsp_references' end },
+    },
+  },
+
+  {
+    'theprimeagen/harpoon',
+    config = function() require 'harpoon':setup() end,
+    keys = {
+      { '<leader>a', function() require 'harpoon':list():append() end },
+      { '<C-e>', function()
+        local harpoon = require 'harpoon'
+        harpoon.ui():toggle_quick_menu(harpoon:list())
+      end },
+      { '<C-h>',     function() require 'harpoon':list():select(1) end },
+      { '<C-j>',     function() require 'harpoon':list():select(2) end },
+      { '<C-k>',     function() require 'harpoon':list():select(3) end },
+      { '<C-l>',     function() require 'harpoon':list():select(4) end },
+    },
+  },
+
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
@@ -25,7 +58,9 @@ return {
           qflist_previewer = require 'telescope.previewers'.vim_buffer_qflist.new,
 
           mappings = {
+            n = { ['<c-t>'] = require 'trouble.providers.telescope'.open_with_trouble },
             i = {
+              ['<c-t>'] = require 'trouble.providers.telescope'.open_with_trouble,
               ['<esc>'] = require 'telescope.actions'.close,
               ['<C-x>'] = false,
               ['<C-q>'] = require 'telescope.actions'.send_to_qflist,

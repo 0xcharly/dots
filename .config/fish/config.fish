@@ -16,6 +16,7 @@ if status is-interactive
     set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 
     set -Ux HOMEBREW_NO_AUTO_UPDATE 1
+    set -Ux HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
     set -Ux MANPAGER "nvim +Man!"
 
     bind \cf ~/.local/bin/open-tmux-workspace
@@ -44,7 +45,7 @@ if status is-interactive
             set_color --bold "#1e1e2e"
             set_color --background "#89b4fa"
             echo -n " $citc_space "
-        else if set -q  VIRTUAL_ENV
+        else if set -q VIRTUAL_ENV
             set -l pwd_segment_bg_color "#b4befe"
 
             set_color --bold "#1e1e2e"
