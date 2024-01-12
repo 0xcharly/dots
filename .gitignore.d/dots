@@ -1,4 +1,5 @@
 *
+!/.aerospace.toml
 !/.config
 !/.config/brew
 !/.config/brew/Brewfile
@@ -29,6 +30,8 @@
 !/.config/nvim/lua/user/utils
 !/.config/nvim/lua/user/utils/*.lua
 !/.config/nvim/stylua.toml
+!/.config/skhd/
+!/.config/skhd/skhdrc
 !/.config/tmux/
 !/.config/tmux/tmux.conf
 !/.config/wezterm
