@@ -5,10 +5,10 @@ start-at-login = true
 gaps.inner.horizontal = 8
 gaps.inner.vertical = 8
 
-gaps.outer.left = 128
+gaps.outer.left = 8
 gaps.outer.bottom = 8
 gaps.outer.top = 8
-gaps.outer.right = 128
+gaps.outer.right = 8
 
 accordion-padding = 8
 
@@ -60,13 +60,25 @@ alt-shift-3 = 'move-node-to-workspace 3'
 alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 
+# Join
+alt-shift-semicolon = 'mode join'
+
+[mode.join.binding]
+c = ['join-with up', 'mode main']
+h = ['join-with left', 'mode main']
+n = ['join-with right', 'mode main']
+t = ['join-with down', 'mode main']
+enter = 'mode main'
+esc = 'mode main'
+
+# Resize
 alt-r = 'mode resize'
 
 [mode.resize.binding]
+c = 'resize width +50'
 h = 'resize width -50'
 n = 'resize height +50'
 t = 'resize height -50'
-c = 'resize width +50'
 enter = 'mode main'
 esc = 'mode main'
 

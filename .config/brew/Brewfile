@@ -25,15 +25,11 @@ brew 'pandoc'
 brew 'pgrep'
 brew 'pkill'
 brew 'ripgrep'
-brew 'shellcheck'
-brew 'shfmt'
 brew 'sqlite3'
 brew 'tmux'
 brew 'tree'
 brew 'watch'
 brew 'wget'
-brew 'z'
-brew 'zsh'
 
 # brew 'asdf'
 # # asdf dependencies
@@ -44,16 +40,20 @@ brew 'zsh'
 # brew 'libxslt'
 # brew 'libtool'
 # brew 'unixodbc'
-# brew 'unzip'
+brew 'unzip'
 
 cask 'spotify'
 cask 'vlc'
 cask 'visual-studio-code'
-#cask 'cleanshot'
+cask 'cleanshot'
 cask 'discord'
 
 # Terminal emulator
 cask 'wezterm'
+
+# Window management
+brew 'koekeishiya/formulae/skhd'
+cask 'nikitabobko/tap/aerospace'
 
 tap 'homebrew/cask-fonts'
 # cask 'font-hack'
