@@ -22,6 +22,10 @@ if status is-interactive
     bind \cf ~/.local/bin/open-tmux-workspace
     bind -M insert \cf ~/.local/bin/open-tmux-workspace
 
+    if type -q eza
+        alias ls eza
+    end
+
     function fish_mode_prompt
     end
 
