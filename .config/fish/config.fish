@@ -22,6 +22,7 @@ if status is-interactive
     bind \cf ~/.local/bin/open-tmux-workspace
     bind -M insert \cf ~/.local/bin/open-tmux-workspace
 
+    alias dots "vcsh dots"
     if type -q eza
         alias ls eza
     end
