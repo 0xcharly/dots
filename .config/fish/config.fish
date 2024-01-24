@@ -31,15 +31,15 @@ if status is-interactive
     end
 
     function fish_prompt
+        print_pwd
         set_color "#a6adc8"
         set_color -b "#313244"
-        echo -n "" (date "+%H:%M:%S") ""
-        echo -n (format_pwd)
+        printf " \$ "
         set_color normal
-        echo -n " "
+        printf " "
     end
 
-    function format_pwd
+    function print_pwd
         set -l pwd (pwd)
         set -l whoami (whoami)
         string match -rq "/google/src/cloud/$whoami/(?<citc_space>[a-zA-Z0-9_-]+)/google3" (pwd)
@@ -49,20 +49,20 @@ if status is-interactive
 
             set_color --bold "#1e1e2e"
             set_color --background "#89b4fa"
-            echo -n " $citc_space "
+            printf " $citc_space "
         else if set -q VIRTUAL_ENV
             set -l pwd_segment_bg_color "#b4befe"
 
             set_color --bold "#1e1e2e"
             set_color -b $pwd_segment_bg_color
-            echo -n "" (basename $VIRTUAL_ENV) ""
+            printf " %s " (basename $VIRTUAL_ENV)
         else
             set -l pwd_segment_bg_color "#a6e3a1"
             fish_is_root_user; and set pwd_segment_bg_color "#f38ba8"
 
             set_color --bold "#1e1e2e"
             set_color -b $pwd_segment_bg_color
-            echo -n "" (prompt_pwd) ""
+            printf " %s " (prompt_pwd)
         end
     end
 end
