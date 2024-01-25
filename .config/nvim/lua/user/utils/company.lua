@@ -13,14 +13,14 @@ end
 
 function M.is_corporate_host() return vim.loop.fs_stat(google3_home) ~= nil end
 
-function M.setup_lsp(capabilities)
+function M.register_ciderlsp(lspconfig)
   local ciderlsp_cmp = {
     '/google/bin/releases/cider/ciderlsp/ciderlsp',
     '--tooltag=nvim-lsp',
     '--noforward_sync_responses',
     '--websocket_host=ciderlsp-staging.corp.google.com',
   }
-  if vim.fn.executable('mdproxy') then
+  if vim.fn.executable('mdproxy') > 0 then
     table.insert(ciderlsp_cmp, 1, 'mdproxy')
   end
   -- Custom configuration for CiderLSP.
@@ -45,10 +45,7 @@ function M.setup_lsp(capabilities)
       settings = {},
     },
   }
-  require('lspconfig').ciderlsp.setup {
-    capabilities = capabilities,
-    on_attach = M.user_on_attach,
-  }
+  return lspconfig.ciderlsp
 end
 
 function M.path_display(opts, path)

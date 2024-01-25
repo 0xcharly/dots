@@ -78,6 +78,14 @@ M.dartls_settings = {
   renameFilesWithClasses = 'always',
 }
 
+-- Register Company LSP server (powered by local tool).
+function M.ciderlsp_setup(lspconfig, cmp_nvim_lsp)
+  require 'user.utils.company'.register_ciderlsp(lspconfig).setup {
+    capabilities = M.user_capabilities(cmp_nvim_lsp),
+    on_attach = M.user_on_attach,
+  }
+end
+
 -- Register the C/C++ LSP (powered by clangd).
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
 -- https://clangd.llvm.org/installation.html

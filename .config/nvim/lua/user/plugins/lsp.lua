@@ -19,6 +19,10 @@ return {
       user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
       user_lsp_utils.pylsp_setup(lspconfig, cmp_nvim_lsp)
 
+      if require 'user.utils.company'.is_corporate_host() then
+        user_lsp_utils.ciderlsp_setup(lspconfig, cmp_nvim_lsp)
+      end
+
       user_lsp_utils.ui_tweaks() -- Adjust UI.
     end,
   },
