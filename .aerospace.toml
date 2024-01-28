@@ -62,6 +62,8 @@ alt-shift-5 = 'move-node-to-workspace 5'
 
 # Join
 alt-shift-semicolon = 'mode join'
+# Resize
+alt-r = 'mode resize'
 
 [mode.join.binding]
 c = ['join-with up', 'mode main']
@@ -70,9 +72,6 @@ n = ['join-with right', 'mode main']
 t = ['join-with down', 'mode main']
 enter = 'mode main'
 esc = 'mode main'
-
-# Resize
-alt-r = 'mode resize'
 
 [mode.resize.binding]
 c = 'resize width +50'
@@ -88,4 +87,8 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'pl.maketheweb.cleanshotx'
+run = 'layout floating'
+
+# Start all windows in floating mode.
+[[on-window-detected]]
 run = 'layout floating'
