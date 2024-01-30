@@ -10,6 +10,7 @@
 !/.config/git/config
 !/.config/kitty
 !/.config/kitty/*
+!/.config/kitty/themes/*
 !/.config/helix
 !/.config/helix/config.toml
 !/.config/helix/themes
