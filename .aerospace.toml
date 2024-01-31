@@ -16,7 +16,7 @@ accordion-padding = 8
 enable-normalization-opposite-orientation-for-nested-containers = false
 
 [mode.main.binding]
-alt-enter = 'exec-and-forget open -n /Applications/WezTerm.app'
+alt-enter = 'exec-and-forget open -n /Applications/Kitty.app'
 
 alt-h = 'focus left'
 alt-n = 'focus right'
