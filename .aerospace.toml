@@ -66,10 +66,10 @@ alt-shift-semicolon = 'mode join'
 alt-r = 'mode resize'
 
 [mode.join.binding]
-c = ['join-with up', 'mode main']
-h = ['join-with left', 'mode main']
-n = ['join-with right', 'mode main']
-t = ['join-with down', 'mode main']
+c = 'join-with up'
+h = 'join-with left'
+n = 'join-with right'
+t = 'join-with down'
 enter = 'mode main'
 esc = 'mode main'
 
@@ -90,5 +90,5 @@ if.app-id = 'pl.maketheweb.cleanshotx'
 run = 'layout floating'
 
 # Start all windows in floating mode.
-[[on-window-detected]]
-run = 'layout floating'
+#[[on-window-detected]]
+#run = 'layout floating'
