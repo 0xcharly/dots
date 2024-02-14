@@ -34,7 +34,7 @@ if status is-interactive
         print_pwd
         set_color "#a6adc8"
         set_color -b "#313244"
-        printf " \$ "
+        printf " %s " (date '+%H:%M:%S')
         set_color normal
         printf " "
     end
