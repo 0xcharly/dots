@@ -4,7 +4,7 @@ email = charly@delay.gg
 [core]
 editor = nvim
 excludesFile = ~/.config/git/ignore
-pager = delta
+pager = git-split-diffs --color | less -RFX
 [init]
 defaultBranch = main
 [submodule]
@@ -41,3 +41,5 @@ lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold
 helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 helper = !gh auth git-credential
+[split-diffs]
+theme-name = github-dark-dim
