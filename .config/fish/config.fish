@@ -32,6 +32,7 @@ if status is-interactive
 
     function fish_prompt
         print_pwd
+        set_color normal
         set_color "#a6adc8"
         set_color -b "#313244"
         printf " %s " (date '+%H:%M:%S')
@@ -47,21 +48,21 @@ if status is-interactive
             # Rename the current tab.
             title $citc_space
 
-            set_color --bold "#1e1e2e"
+            set_color "#1e1e2e"
             set_color --background "#89b4fa"
             printf " $citc_space "
         else if set -q VIRTUAL_ENV
             set -l pwd_segment_bg_color "#b4befe"
 
-            set_color --bold "#1e1e2e"
-            set_color -b $pwd_segment_bg_color
+            set_color "#1e1e2e"
+            set_color --background $pwd_segment_bg_color
             printf " %s " (basename $VIRTUAL_ENV)
         else
             set -l pwd_segment_bg_color "#a6e3a1"
             fish_is_root_user; and set pwd_segment_bg_color "#f38ba8"
 
-            set_color --bold "#1e1e2e"
-            set_color -b $pwd_segment_bg_color
+            set_color "#1e1e2e"
+            set_color --background $pwd_segment_bg_color
             printf " %s " (prompt_pwd)
         end
     end

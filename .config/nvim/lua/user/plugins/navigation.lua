@@ -17,6 +17,7 @@ return {
     },
   },
 
+  --[[
   {
     'theprimeagen/harpoon',
     config = function() require 'harpoon':setup() end,
@@ -32,6 +33,7 @@ return {
       { '<C-l>',     function() require 'harpoon':list():select(4) end },
     },
   },
+  --]]
 
   {
     'nvim-telescope/telescope.nvim',
