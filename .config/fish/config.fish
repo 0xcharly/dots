@@ -6,7 +6,8 @@ if status is-interactive
 
     test -d $HOME/.cargo/bin && fish_add_path $HOME/.cargo/bin
     test -d $HOME/.local/bin && fish_add_path $HOME/.local/bin
-    test -d $HOME/.local/share/bob/nvim-bin/ && fish_add_path $HOME/.local/share/bob/nvim-bin
+    test -d $HOME/.local/share/bob/nvim-bin && fish_add_path $HOME/.local/share/bob/nvim-bin
+    test -d $HOME/.local/opt/npm-packages/bin && fish_add_path $HOME/.local/opt/npm-packages/bin
     test -x /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
 
     type -q eza && alias ls eza
