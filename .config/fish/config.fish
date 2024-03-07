@@ -2,32 +2,37 @@ if status is-interactive
     set fish_greeting # Disable greeting message.
     set -g fish_term24bit 1 # Enable true color support.
 
-    test -x /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
+    fish_vi_key_bindings # Enable vi bindings.
+
+    test -d $HOME/.cargo/bin && fish_add_path $HOME/.cargo/bin
     test -d $HOME/.local/bin && fish_add_path $HOME/.local/bin
+    test -x /opt/homebrew/bin/brew && eval (/opt/homebrew/bin/brew shellenv)
+
+    type -q eza && alias ls eza
+    type -q nvim && set -Ux MANPAGER "nvim +Man!"
+    string match -q -- "*.c.googlers.com" (hostname) && alias bat batcat
 
     set -gx EDITOR (which nvim)
     set -gx VISUAL $EDITOR
     set -gx SUDO_EDITOR $EDITOR
 
+    # Bat theme.
     set -Ux BAT_THEME base16
+
+    # Catppuccin theme for FzF. https://github.com/catppuccin/fzf
     set -e FZF_DEFAULT_OPTS
     set -Ux FZF_DEFAULT_OPTS "--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8,fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc,marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
-    set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-    set -gx PATH $HOME/.cabal/bin $PATH $HOME/.ghcup/bin # ghcup-env
 
-    set -Ux HOMEBREW_NO_AUTO_UPDATE 1
-    set -Ux HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
-    set -Ux MANPAGER "nvim +Man!"
+    if test Darwin = (uname)
+        # Homebrew setup.
+        set -Ux HOMEBREW_NO_AUTO_UPDATE 1
+        set -Ux HOMEBREW_BUNDLE_FILE "$HOME/.config/brew/Brewfile"
+    end
 
     bind \cf ~/.local/bin/open-tmux-workspace
     bind -M insert \cf ~/.local/bin/open-tmux-workspace
 
-    alias dots "vcsh dots"
-    if type -q eza
-        alias ls eza
-    end
-
-    function fish_mode_prompt
+    function fish_mode_prompt -d "Disable prompt vi mode reporting"
     end
 
     function fish_prompt
