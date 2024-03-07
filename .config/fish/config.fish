@@ -16,6 +16,9 @@ if status is-interactive
     set -gx VISUAL $EDITOR
     set -gx SUDO_EDITOR $EDITOR
 
+    # NPM global packages
+    set -Ux NPM_PACKAGES "$HOME/.local/opt/npm-packages"
+
     # Bat theme.
     set -Ux BAT_THEME base16
 
