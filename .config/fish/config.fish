@@ -41,6 +41,7 @@ if status is-interactive
     end
 
     function fish_prompt
+        title (hostname)
         print_pwd
         set_color normal
         set_color "#a6adc8"
@@ -56,7 +57,7 @@ if status is-interactive
         string match -rq "/google/src/cloud/$whoami/(?<citc_space>[a-zA-Z0-9_-]+)/google3" (pwd)
         if test -n "$citc_space"
             # Rename the current tab.
-            title $citc_space
+            # title $citc_space
 
             set_color "#1e1e2e"
             set_color --background "#89b4fa"
