@@ -5,6 +5,8 @@
 [core]
 	editor = nvim
 	excludesFile = ~/.config/git/ignore
+	pager = git-split-diffs --color | less -RFX
+	#pager = delta
 [init]
 	defaultBranch = main
 [submodule]
@@ -17,6 +19,7 @@
 	diffFilter = delta --color-only
 [diff]
 	tool = nvimdiff
+	colorMoved = default
 [difftool "nvimdiff"]
 	cmd = nvim -d $LOCAL $REMOTE
 [merge]
@@ -29,7 +32,7 @@
 [delta]
 	features = line-numbers decorations
 	whitespace-error-style = 22 reverse
-	syntax-theme = base16
+	syntax-theme = base16-256
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
