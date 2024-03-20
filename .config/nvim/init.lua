@@ -21,8 +21,479 @@ vim.g.mapleader = ','
 vim.g.maplocalleader = ' '
 
 if not vim.g.vscode then
-  require 'lazy'.setup('user.plugins', {
-    install = { colorscheme = { 'primebuddy', 'habamax' } },
+  require 'lazy'.setup({
+    ---[[ Base ]]
+    -- Common dependency.
+    { 'nvim-lua/plenary.nvim' },
+
+    --- Motions and other convenience plugins.
+    { 'tpope/vim-repeat' },
+    { 'asiryk/auto-hlsearch.nvim', event = 'BufReadPost', config = true },
+    { 'kylechui/nvim-surround',    event = 'VeryLazy',    config = true },
+    { 'numToStr/Comment.nvim',     lazy = false,          config = true },
+    { 'ethanholz/nvim-lastplace',  lazy = false,          config = true },
+
+    ---[[ UI ]]
+    {
+      'catppuccin/nvim',
+      name = 'catppuccin',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        vim.o.termguicolors = true
+        vim.cmd [[colorscheme catppuccin-mocha]]
+      end,
+    },
+
+    -- Iconography.
+    { 'nvim-tree/nvim-web-devicons', config = true },
+
+    -- Git integration.
+    { 'lewis6991/gitsigns.nvim',     config = true },
+
+    {
+      'nvim-lualine/lualine.nvim',
+      config = function()
+        local section_filename = {
+          'filename',
+          symbols = {
+            modified = '󱇨 ', -- Text to show when the file is modified.
+            readonly = '󱀰 ', -- Text to show when the file is non-modifiable or readonly.
+            unnamed = '󰡯 ', -- Text to show for unnamed buffers.
+            newfile = '󰻭 ', -- Text to show for newly created file before first write
+          },
+        }
+        local lualine_groups_generator = function(suffix)
+          return {
+            a = 'LualineA' .. suffix,
+            b = 'LualineB' .. suffix,
+            c = 'LualineC' .. suffix,
+            x = 'LualineX' .. suffix,
+            y = 'LualineY' .. suffix,
+            z = 'LualineZ' .. suffix,
+          }
+        end
+        require 'lualine'.setup {
+          options = {
+            theme = {
+              normal = lualine_groups_generator 'Normal',
+              insert = lualine_groups_generator 'Insert',
+              visual = lualine_groups_generator 'Visual',
+              replace = lualine_groups_generator 'Replace',
+              command = lualine_groups_generator 'Command',
+              inactive = lualine_groups_generator 'Inactive',
+            },
+          },
+          sections = {
+            lualine_a = { 'mode' },
+            lualine_b = { section_filename },
+            lualine_c = {
+              {
+                'lsp_info',
+                separator = '‥',
+              },
+              {
+                'diagnostics',
+                symbols = {
+                  error = require 'user.utils.lsp'.diagnostic_signs.Error,
+                  warn = require 'user.utils.lsp'.diagnostic_signs.Warn,
+                  info = require 'user.utils.lsp'.diagnostic_signs.Info,
+                  hint = require 'user.utils.lsp'.diagnostic_signs.Hint,
+                },
+              },
+            },
+            lualine_x = {
+              {
+                'diff',
+                symbols = { added = '󱍭 ', modified = '󱨈 ', removed = '󱍪 ' },
+                separator = '‥',
+              },
+              {
+                'branch',
+                icon = { '', align = 'right' },
+              },
+            },
+            lualine_y = { 'progress' },
+            lualine_z = { 'location' },
+          },
+          inactive_sections = {
+            lualine_a = { 'mode' },
+            lualine_b = {},
+            lualine_c = { section_filename },
+            lualine_x = { 'location' },
+            lualine_y = {},
+            lualine_z = {}
+          },
+        }
+      end,
+    },
+
+    ---[[ Navigation ]]
+    {
+      'github/copilot.vim',
+      cond = not require 'user.utils.company'.is_corporate_host(),
+    },
+
+    {
+      'folke/trouble.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+      keys = {
+        { '<leader>xx', function() require 'trouble'.toggle() end },
+        { '<leader>xw', function() require 'trouble'.toggle 'workspace_diagnostics' end },
+        { '<leader>xd', function() require 'trouble'.toggle 'document_diagnostics' end },
+        { '<leader>xq', function() require 'trouble'.toggle 'quickfix' end },
+        { '<leader>xl', function() require 'trouble'.toggle 'loclist' end },
+        { 'gR',         function() require 'trouble'.toggle 'lsp_references' end },
+      },
+    },
+
+    {
+      'nvim-telescope/telescope.nvim',
+      dependencies = {
+        -- 1st-party telescope plugins.
+        { 'nvim-telescope/telescope-symbols.nvim' },
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+        { 'tsakirist/telescope-lazy.nvim' },
+        { 'yamatsum/nvim-nonicons' },
+
+        -- 3rd-party telescope plugins.
+        { 'debugloop/telescope-undo.nvim' },
+      },
+      config = function()
+        require 'telescope'.setup {
+          defaults = {
+            prompt_prefix = '   ',
+            entry_prefix = '   ',
+            selection_caret = '  ',
+            layout_strategy = 'flex',
+
+            file_previewer = require 'telescope.previewers'.vim_buffer_cat.new,
+            grep_previewer = require 'telescope.previewers'.vim_buffer_vimgrep.new,
+            qflist_previewer = require 'telescope.previewers'.vim_buffer_qflist.new,
+
+            mappings = {
+              n = { ['<c-t>'] = require 'trouble.providers.telescope'.open_with_trouble },
+              i = {
+                ['<c-t>'] = require 'trouble.providers.telescope'.open_with_trouble,
+                ['<esc>'] = require 'telescope.actions'.close,
+                ['<C-x>'] = false,
+                ['<C-q>'] = require 'telescope.actions'.send_to_qflist,
+                ['<CR>'] = require 'telescope.actions'.select_default,
+              },
+            },
+          },
+        }
+
+        require 'telescope'.load_extension 'fzf'
+        require 'telescope'.load_extension 'lazy'
+        require 'telescope'.load_extension 'undo'
+      end,
+      keys = {
+        { '<LocalLeader>f', function() require 'telescope.builtin'.find_files() end },
+        {
+          '<LocalLeader><Space>',
+          function()
+            vim.fn.system [[ git rev-parse --is-inside-work-tree ]]
+            if vim.v.shell_error == 0 then
+              require 'telescope.builtin'.git_files()
+            else
+              require 'telescope.builtin'.find_files()
+            end
+          end,
+        },
+        { '<LocalLeader>g', function() require 'telescope.builtin'.live_grep() end },
+        {
+          '<LocalLeader>.',
+          function()
+            local opts = { cwd = '~/.config' }
+            if vim.fn.executable 'rg' > 0 then
+              opts.find_command = { 'rg', '--ignore', '--hidden', '--files' }
+            elseif vim.fn.executable 'fd' > 0 then
+              opts.find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' }
+            end
+            require 'telescope.builtin'.find_files(opts)
+          end,
+        },
+        { '<LocalLeader>b',  require 'user.utils.telescope'.buffers },
+        { '<LocalLeader>j',  function() require 'telescope.builtin'.jumplist() end },
+        { '<LocalLeader>h',  function() require 'telescope.builtin'.highlights() end },
+        { '<LocalLeader>s',  function() require 'telescope.builtin'.lsp_document_symbols() end },
+        { '<LocalLeader>S',  function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end },
+        { '<LocalLeader>d',  function() require 'telescope.builtin'.diagnostics() end },
+        { '<LocalLeader>/',  function() require 'telescope.builtin'.find_files() end },
+        { '<LocalLeader>?',  function() require 'telescope.builtin'.help_tags() end },
+        { '<LocalLeader>tm', function() require 'telescope.builtin'.man_pages() end },
+        { '<LocalLeader>u',  function() require 'telescope'.extensions.undo.undo() end },
+        { '<LocalLeader>*',  function() require 'telescope.builtin'.grep_string() end },
+        { '<LocalLeader>L',  function() require 'telescope'.extensions.lazy.lazy() end },
+      },
+    },
+
+    ---[[ Languages/syntaxes ]]
+    {
+      'nvim-treesitter/nvim-treesitter',
+      dependencies = {
+        { 'nvim-treesitter/nvim-treesitter-textobjects' },
+        { 'JoosepAlviste/nvim-ts-context-commentstring' },
+      },
+      build = ':TSUpdate',
+      config = function() ---@diagnostic disable: missing-fields
+        require 'nvim-treesitter.configs'.setup {
+          ensure_installed = {
+            'bash',
+            'beancount',
+            'c',
+            -- 'comment', -- NOTE: Huge performance drop when using `comment`.
+            'cpp',
+            'dart',
+            'diff',
+            'fish',
+            'java',
+            'json',
+            'kotlin',
+            'lua',
+            'markdown',
+            'markdown_inline',
+            'python',
+            'regex',
+            'rst',
+            'rust',
+            'sql',
+            'vimdoc',
+            'yaml',
+          },
+          sync_install = false, -- Install parsers synchronously (only applied to `ensure_installed`)
+          auto_install = false, -- Automatically install missing parsers when entering buffer
+          highlight = { enable = true },
+          -- Disabled for Dart and Python until #4945 is resolved.
+          -- https://github.com/nvim-treesitter/nvim-treesitter/issues/4945
+          -- https://www.reddit.com/r/nvim/comments/147u8ln/nvim_lags_when_a_dart_file_is_opened/
+          indent = { enable = true, disable = { 'dart', 'python' } },
+          incremental_selection = { enable = false },
+          textobjects = {
+            select = { enable = false },
+            move = { enable = false },
+          },
+        }
+      end,
+    },
+
+    ---[[ Completion engine ]]
+    {
+      'hrsh7th/nvim-cmp',
+      event = 'InsertEnter',
+      dependencies = {
+        { 'hrsh7th/cmp-buffer' },
+        { 'hrsh7th/cmp-path' },
+        { 'hrsh7th/cmp-cmdline' },
+        { 'hrsh7th/cmp-nvim-lsp-document-symbol' },
+        { 'hrsh7th/cmp-nvim-lsp' },
+        { 'hrsh7th/cmp-nvim-lua' },
+
+        { 'L3MON4D3/LuaSnip' },
+        { 'onsails/lspkind.nvim' },
+
+        {
+          dir = '~/dev/cmp-nvim-ciderlsp',
+          cond = company.is_corporate_host(),
+        },
+      },
+      config = function()
+        local cmp = require 'cmp'
+
+        cmp.setup {
+          mapping = cmp.mapping.preset.insert {
+            ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }, { 'i', 'c' }),
+            ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert }, { 'i', 'c' }),
+            ['<C-m>'] = cmp.mapping.scroll_docs(4),
+            ['<C-w>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-a>'] = cmp.mapping.abort(),
+            ['<C-y>'] = cmp.mapping(
+              cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Insert,
+                select = true,
+              },
+              { 'i', 'c' }
+            ),
+            ['<c-space>'] = cmp.mapping.complete {},
+            ['<C-q>'] = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = true },
+            ['<Tab>'] = cmp.config.disable,
+          },
+          sources = {
+            { name = 'nvim_lua' },
+            { name = 'nvim_lsp' },
+            { name = 'nvim_ciderlsp' },
+            { name = 'path' },
+            { name = 'luasnip' },
+            { name = 'buffer',       keyword_length = 3 },
+          },
+          sorting = {
+            comparators = {
+              cmp.config.compare.offset,
+              cmp.config.compare.exact,
+              cmp.config.compare.score,
+
+              -- Copied from cmp-under; don't need a plugin for this.
+              function(entry1, entry2)
+                local _, entry1_under = entry1.completion_item.label:find '^_+'
+                local _, entry2_under = entry2.completion_item.label:find '^_+'
+                entry1_under = entry1_under or 0
+                entry2_under = entry2_under or 0
+                if entry1_under > entry2_under then
+                  return false
+                elseif entry1_under < entry2_under then
+                  return true
+                end
+              end,
+
+              cmp.config.compare.kind,
+              cmp.config.compare.sort_text,
+              cmp.config.compare.length,
+              cmp.config.compare.order,
+            },
+          },
+          snippet = {
+            expand = function(args) require 'luasnip'.lsp_expand(args.body) end,
+          },
+          window = {
+            completion = cmp.config.window.bordered(),
+            documentation = cmp.config.window.bordered(),
+          },
+          formatting = {
+            format = require 'lspkind'.cmp_format {
+              mode = 'symbol_text',
+              preset = 'codicons',
+              maxwidth = 50,
+              ellipsis_char = '…',
+              menu = {
+                buffer = ' (buf)',
+                nvim_lsp = ' (lsp)',
+                nvim_lua = ' (lua)',
+                nvim_ciderlsp = ' (cid)',
+              },
+            },
+          },
+        }
+
+        -- Use buffer source for `/`.
+        cmp.setup.cmdline('/', { sources = { { name = 'buffer' } } })
+
+        -- Use cmdline & path source for ':'.
+        cmp.setup.cmdline(':', {
+          sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline' } }),
+        })
+
+        cmp.setup.filetype('beancount', {
+          sources = cmp.config.sources { { name = 'beancount' } },
+        })
+      end,
+    },
+
+    ---[[ 3rd party tooling ]]
+    { 'williamboman/mason.nvim' },
+
+    ---[[ LSP config ]]
+    {
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        { 'folke/neodev.nvim',   config = true }, -- Needs to be setup before lspconfig
+        { 'hrsh7th/cmp-nvim-lsp' },
+      },
+      config = function()
+        local lspconfig = require 'lspconfig'
+        local cmp_nvim_lsp = require 'cmp_nvim_lsp'
+
+        local user_lsp_utils = require 'user.utils.lsp'
+
+        -- Register servers.
+        -- The DartLS server is configured by the flutter-tools plugin.
+        -- The RustLS server is configured by the rust-tools plugin.
+        user_lsp_utils.clangd_setup(lspconfig, cmp_nvim_lsp)
+        user_lsp_utils.lua_ls_setup(lspconfig, cmp_nvim_lsp)
+        user_lsp_utils.pylsp_setup(lspconfig, cmp_nvim_lsp)
+
+        if require 'user.utils.company'.is_corporate_host() then
+          user_lsp_utils.ciderlsp_setup(lspconfig, cmp_nvim_lsp)
+        end
+
+        user_lsp_utils.ui_tweaks() -- Adjust UI.
+      end,
+    },
+
+    {
+      -- Enrich Rust development.
+      'simrat39/rust-tools.nvim',
+      dependencies = { 'mfussenegger/nvim-dap' },
+      ft = 'rust',
+      opts = {
+        server = {
+          on_attach = require 'user.utils.lsp'.user_on_attach,
+        },
+        tools = {
+          inlay_hints = { highlight = 'LspCodeLens' },
+        },
+      },
+    },
+
+    {
+      'jose-elias-alvarez/null-ls.nvim',
+      config = function()
+        local nls = require 'null-ls'
+        nls.setup {
+          debounce = 150,
+          save_after_format = false,
+          on_attach = require 'user.utils.lsp'.user_on_attach,
+          sources = {
+            nls.builtins.formatting.fish_indent,
+            nls.builtins.formatting.jq,
+            nls.builtins.formatting.shfmt,
+            nls.builtins.formatting.bean_format,
+            nls.builtins.diagnostics.fish,
+            nls.builtins.formatting.prettierd.with {
+              filetypes = { 'markdown' }, -- only runs `deno fmt` for markdown
+            },
+          },
+        }
+      end,
+    },
+
+    {
+      'stevearc/conform.nvim',
+      event = { 'BufWritePre' },
+      cmd = { 'ConformInfo' },
+      keys = {
+        {
+          -- Customize or remove this keymap to your liking
+          '<leader>cf',
+          function()
+            require 'conform'.format { async = true, lsp_fallback = true }
+          end,
+          mode = '',
+          desc = 'Format buffer',
+        },
+      },
+      -- Everything in opts will be passed to setup()
+      opts = {
+        -- Define your formatters
+        formatters_by_ft = {
+          -- lua = { 'stylua' },
+          -- python = { 'isort', 'black' },
+          -- javascript = { { 'prettierd', 'prettier' } },
+        },
+        -- Customize formatters
+        formatters = {
+          shfmt = {
+            prepend_args = { '-i', '2' },
+          },
+        },
+      },
+      init = function()
+        -- If you want the formatexpr, here is the place to set it.
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+      end,
+    }
+  }, {
+    install = { colorscheme = { 'catppuccin', 'habamax' } },
     ui = {
       border = 'rounded',
     },
