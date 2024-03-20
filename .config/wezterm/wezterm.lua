@@ -65,47 +65,12 @@ local config = wezterm.config_builder()
 config.font = wezterm.font_with_fallback {
   -- 'PragmataPro Mono Liga',
   -- 'Fira Code',
-  'Victor Mono',
+  -- 'Victor Mono',
   -- 'Dank Mono',
-  -- 'Berkeley Mono',
+  'Berkeley Mono',
   'Symbols Nerd Font',
   'Material Design Icons Desktop',
   'Motomachi',
-}
--- config.font = wezterm.font { family = 'Operator Mono', weight = 'DemiLight' }
-config.font_rules = {
-  -- Bold-and-italic
-  {
-    intensity = 'Bold',
-    italic = true,
-    font = wezterm.font {
-      family = 'Victor Mono',
-      weight = 'Bold',
-      style = 'Oblique',
-    },
-  },
-
-  -- Normal-intensity-and-italic
-  {
-    intensity = 'Normal',
-    italic = true,
-    font = wezterm.font {
-      family = 'Victor Mono',
-      weight = 'Regular',
-      style = 'Oblique',
-    },
-  },
-
-  -- Normal-intensity-and-italic
-  {
-    intensity = 'Half',
-    italic = true,
-    font = wezterm.font {
-      family = 'Victor Mono',
-      weight = 'DemiBold',
-      style = 'Oblique',
-    },
-  },
 }
 -- https://wezfurlong.org/wezterm/config/lua/config/font_size.html
 -- Font size 14 for the best rendering.  Might be on the smaller side at some
@@ -118,7 +83,7 @@ config.enable_tab_bar = true
 -- https://wezfurlong.org/wezterm/config/lua/config/use_fancy_tab_bar.html
 config.use_fancy_tab_bar = false
 -- https://wezfurlong.org/wezterm/config/lua/config/tab_bar_at_bottom.html?h=tab_bar
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 -- https://wezfurlong.org/wezterm/config/lua/config/tab_max_width.html
 config.tab_max_width = 32
 -- https://wezfurlong.org/wezterm/config/lua/config/hide_tab_bar_if_only_one_tab.html
@@ -131,16 +96,12 @@ config.show_tab_index_in_tab_bar = true
 config.show_tabs_in_tab_bar = true
 -- https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
--- https://wezfurlong.org/wezterm/config/lua/config/integrated_title_buttons.html
-config.integrated_title_buttons = { 'Close' }
--- https://wezfurlong.org/wezterm/config/lua/config/integrated_title_button_style.html
-config.integrated_title_button_style = 'Gnome'
 -- https://wezfurlong.org/wezterm/config/lua/config/initial_cols.html
 config.initial_cols = 120
 -- https://wezfurlong.org/wezterm/config/lua/config/initial_rows.html
 config.initial_rows = 30
 -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
---window_padding = { top = 48 },
+config.window_padding = { top = 48 }
 -- Some common hyperlink rules.
 config.hyperlink_rules = {
   { regex = '\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b', format = '$0' },
