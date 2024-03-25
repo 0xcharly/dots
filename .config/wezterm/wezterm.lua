@@ -91,16 +91,12 @@ config.tab_max_width = 32
 config.hide_tab_bar_if_only_one_tab = false
 -- https://wezfurlong.org/wezterm/config/lua/config/show_new_tab_button_in_tab_bar.html
 config.show_new_tab_button_in_tab_bar = false
--- https://wezfurlong.org/wezterm/config/lua/config/show_tab_index_in_tab_bar.html
-config.show_tab_index_in_tab_bar = true
--- https://wezfurlong.org/wezterm/config/lua/config/show_tabs_in_tab_bar.html
-config.show_tabs_in_tab_bar = true
 -- https://wezfurlong.org/wezterm/config/lua/config/window_decorations.html
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 -- https://wezfurlong.org/wezterm/config/lua/config/initial_cols.html
 config.initial_cols = 120
 -- https://wezfurlong.org/wezterm/config/lua/config/initial_rows.html
-config.initial_rows = 30
+config.initial_rows = 50
 -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
 config.window_padding = { top = 48 }
 -- Some common hyperlink rules.
