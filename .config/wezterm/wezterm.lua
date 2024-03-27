@@ -15,6 +15,7 @@ local RIGHT_SLANT = wezterm.nerdfonts.ple_upper_left_triangle
 
 wezterm.on(
   'format-tab-title',
+---@diagnostic disable-next-line: unused-local
   function(tab, tabs, panes, config, hover, max_width)
     local tab_bar_background = config.resolved_palette.ansi[8]
     local intensity = 'Normal'
@@ -98,7 +99,7 @@ config.initial_cols = 120
 -- https://wezfurlong.org/wezterm/config/lua/config/initial_rows.html
 config.initial_rows = 50
 -- https://wezfurlong.org/wezterm/config/lua/config/window_padding.html
-config.window_padding = { top = 48 }
+config.window_padding = { top = 48, left = 0, right = 0, bottom = 0 }
 -- Some common hyperlink rules.
 config.hyperlink_rules = {
   { regex = '\\b\\w+://(?:[\\w.-]+)\\.[a-z]{2,15}\\S*\\b', format = '$0' },
