@@ -1,7 +1,7 @@
 [user]
 	name = Charly Delay
 	email = charly@delay.gg
-	signingkey = ~/.ssh/github.pub
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPf5EWFb/MW+1ZdQxDLZJWPrgrtibMcCmmKeCp+QMWBl
 [core]
 	editor = nvim
 	excludesFile = ~/.config/git/ignore
@@ -50,3 +50,7 @@
 	ui = auto
 [gpg]
 	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
