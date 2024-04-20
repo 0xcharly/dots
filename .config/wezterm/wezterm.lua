@@ -69,6 +69,7 @@ config.font = wezterm.font_with_fallback {
   -- 'Victor Mono',
   -- 'Dank Mono',
   -- 'Berkeley Mono',
+  'Iosevka Term Curly',
   'CommitMono',
   'Symbols Nerd Font',
   'Material Design Icons Desktop',
