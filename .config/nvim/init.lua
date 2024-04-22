@@ -41,6 +41,7 @@ if not vim.g.vscode then
       priority = 1000,
       config = function()
         vim.o.termguicolors = true
+        require 'catppuccin'.setup { transparent_background = true }
         vim.cmd [[colorscheme catppuccin-mocha]]
       end,
     },
