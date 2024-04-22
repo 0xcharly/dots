@@ -2,37 +2,10 @@
 	name = Charly Delay
 	email = charly@delay.gg
 	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPf5EWFb/MW+1ZdQxDLZJWPrgrtibMcCmmKeCp+QMWBl
-[core]
-	editor = nvim
-	excludesFile = ~/.config/git/ignore
-	pager = git-split-diffs --color | less -RFX
-	#pager = delta
 [init]
 	defaultBranch = main
-[submodule]
-	recurse = false
-[pull]
-	rebase = true
 [branch]
 	sort = -committerdate
-[interactive]
-	diffFilter = delta --color-only
-[diff]
-	tool = nvimdiff
-	colorMoved = default
-[difftool "nvimdiff"]
-	cmd = nvim -d $LOCAL $REMOTE
-[merge]
-	tool = nvimmerge
-	conflictstyle = zdiff3
-[mergetool]
-	hideResolved = true
-[mergetool "nvimmerge"]
-	cmd = nvim -d "$MERGED" "$BASE" "$LOCAL" "$REMOTE"
-[delta]
-	features = line-numbers decorations
-	whitespace-error-style = 22 reverse
-	syntax-theme = base16-256
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
@@ -44,8 +17,6 @@
 	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !gh auth git-credential
-[split-diffs]
-	theme-name = github-dark-dim
 [column]
 	ui = auto
 [gpg]
