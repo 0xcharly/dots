@@ -1,15 +1,5 @@
 local wezterm = require 'wezterm'
 
-local function tab_title(tab_info)
-  local title = tab_info.tab_title
-  -- If the tab title is explicitly set, take that.
-  if title and #title > 0 then
-    return title
-  end
-  -- Otherwise, use the title from the active pane in that tab.
-  return tab_info.active_pane.title
-end
-
 local LEFT_SLANT = wezterm.nerdfonts.ple_lower_right_triangle
 local RIGHT_SLANT = wezterm.nerdfonts.ple_upper_left_triangle
 
@@ -17,43 +7,19 @@ wezterm.on(
   'format-tab-title',
 ---@diagnostic disable-next-line: unused-local
   function(tab, tabs, panes, config, hover, max_width)
-    local tab_bar_background = config.resolved_palette.ansi[8]
-    local intensity = 'Normal'
-    local index_color = config.resolved_palette.brights[8]
-    local title_color = config.resolved_palette.brights[8]
-
-    if tab.is_active then
-      intensity = 'Bold'
-      index_color = config.resolved_palette.ansi[2]
-      title_color = config.resolved_palette.foreground
-    end
-
-    local title = tab_title(tab)
-    local index_prefix = string.format('%d:', tab.tab_index)
-    local title_with_index = string.format('%s %s', index_prefix, title)
-
-    -- Ensure that the titles fit in the available space, and that we have room
-    -- for the edges.
-    local fitted_title = wezterm.truncate_right(title, max_width - 4)
-    local fitted_title_with_index = wezterm.truncate_right(title_with_index, max_width - 4)
-    if fitted_title_with_index ~= title_with_index then
-      -- Add an ellipsis if the text was truncated.
-      fitted_title = wezterm.truncate_right(fitted_title, #fitted_title_with_index - #index_prefix - 2) .. '…'
-    end
+    local palette = config.resolved_palette
+    local tab_bar_background = palette.ansi[8]
 
     return {
       { Background = { Color = tab_bar_background } },
-      { Foreground = { Color = config.resolved_palette.background } },
+      { Foreground = { Color = palette.background } },
       { Text = LEFT_SLANT },
-      { Background = { Color = config.resolved_palette.background } },
-      { Foreground = { Color = index_color } },
-      { Attribute = { Intensity = intensity } },
-      { Text = ' ' },
-      { Text = index_prefix },
-      { Foreground = { Color = title_color } },
-      { Text = ' ' .. fitted_title .. ' ' },
+      { Background = { Color = palette.background } },
+      { Foreground = { Color = tab.is_active and palette.ansi[2] or palette.brights[8] } },
+      { Attribute = { Intensity = tab.is_active and 'Bold' or 'Normal'  } },
+      { Text = string.format(' %d ', tab.tab_index) },
       { Background = { Color = tab_bar_background } },
-      { Foreground = { Color = config.resolved_palette.background } },
+      { Foreground = { Color = palette.background } },
       { Text = RIGHT_SLANT },
     }
   end
