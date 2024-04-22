@@ -13,4 +13,4 @@
 # @raycast.description Mirrors Pixel 4 dev device with scrcpy
 # @raycast.author Charly Delay
 
-scrcpy -s 98311FFAZ004TE -b 64M -t -w --disable-screensaver & disown
+scrcpy -s 98311FFAZ004TE -b 64M -t -w --disable-screensaver --keyboard=uhid & disown

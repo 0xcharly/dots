@@ -13,4 +13,4 @@
 # @raycast.description Mirrors Pixel 7a dev device with scrcpy
 # @raycast.author Charly Delay
 
-scrcpy -s 33301JEHN18611 -b 64M -t -w --disable-screensaver & disown
+scrcpy -s 33301JEHN18611 -b 64M -t -w --disable-screensaver --keyboard=uhid & disown
