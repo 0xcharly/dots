@@ -1,7 +1,7 @@
 [user]
 	name = Charly Delay
 	email = charly@delay.gg
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPf5EWFb/MW+1ZdQxDLZJWPrgrtibMcCmmKeCp+QMWBl
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPf5EWFb/MW+1ZdQxDLZJWPrgrtibMcCmmKeCp+QMWBl
 [init]
 	defaultBranch = main
 [branch]
