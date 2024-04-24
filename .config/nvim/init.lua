@@ -27,7 +27,6 @@ if not vim.g.vscode then
     { 'nvim-lua/plenary.nvim' },
 
     --- Motions and other convenience plugins.
-    { 'tpope/vim-repeat' },
     { 'asiryk/auto-hlsearch.nvim', event = 'BufReadPost', config = true },
     { 'kylechui/nvim-surround',    event = 'VeryLazy',    config = true },
     { 'numToStr/Comment.nvim',     lazy = false,          config = true },
@@ -48,6 +47,7 @@ if not vim.g.vscode then
 
     -- Iconography.
     { 'nvim-tree/nvim-web-devicons', config = true },
+    { 'yamatsum/nvim-nonicons',      config = true },
 
     -- Git integration.
     { 'lewis6991/gitsigns.nvim',     config = true },
@@ -151,14 +151,7 @@ if not vim.g.vscode then
     {
       'nvim-telescope/telescope.nvim',
       dependencies = {
-        -- 1st-party telescope plugins.
-        { 'nvim-telescope/telescope-symbols.nvim' },
         { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-        { 'tsakirist/telescope-lazy.nvim' },
-        { 'yamatsum/nvim-nonicons' },
-
-        -- 3rd-party telescope plugins.
-        { 'debugloop/telescope-undo.nvim' },
       },
       config = function()
         require 'telescope'.setup {
@@ -186,8 +179,6 @@ if not vim.g.vscode then
         }
 
         require 'telescope'.load_extension 'fzf'
-        require 'telescope'.load_extension 'lazy'
-        require 'telescope'.load_extension 'undo'
       end,
       keys = {
         { '<LocalLeader>f', function() require 'telescope.builtin'.find_files() end },
@@ -235,7 +226,6 @@ if not vim.g.vscode then
       'nvim-treesitter/nvim-treesitter',
       dependencies = {
         { 'nvim-treesitter/nvim-treesitter-textobjects' },
-        { 'JoosepAlviste/nvim-ts-context-commentstring' },
       },
       build = ':TSUpdate',
       config = function() ---@diagnostic disable: missing-fields
@@ -389,9 +379,6 @@ if not vim.g.vscode then
         })
       end,
     },
-
-    ---[[ 3rd party tooling ]]
-    { 'williamboman/mason.nvim' },
 
     ---[[ LSP config ]]
     {
