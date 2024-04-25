@@ -27,8 +27,27 @@ function M.buffers(opts)
     return true
   end
 
-  require 'telescope.builtin'.buffers(opts)
-  -- require 'telescope.builtin'.buffers(require 'telescope.themes'.get_dropdown(opts))
+  M.pickers.buffers(opts)
 end
+
+-- common opts users would like to have a default for
+local pickers_defaults = { previewer = false, disable_devicons = true }
+
+function M.pickers_wrapper(builtins)
+  return setmetatable({}, {
+    __index = function(_, key)
+      if builtins[key] == nil then
+        error 'Invalid key, please check :h telescope.builtin'
+        return
+      end
+      return function(opts)
+        opts = vim.tbl_extend('keep', opts or {}, pickers_defaults)
+        builtins[key](opts)
+      end
+    end,
+  })
+end
+
+M.pickers = M.pickers_wrapper(require 'telescope.builtin')
 
 return M

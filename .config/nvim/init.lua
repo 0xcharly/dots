@@ -181,19 +181,19 @@ if not vim.g.vscode then
         require 'telescope'.load_extension 'fzf'
       end,
       keys = {
-        { '<LocalLeader>f', function() require 'telescope.builtin'.find_files() end },
+        { '<LocalLeader>f', function() require 'user.utils.telescope'.pickers.find_files() end },
         {
           '<LocalLeader><Space>',
           function()
             vim.fn.system [[ git rev-parse --is-inside-work-tree ]]
             if vim.v.shell_error == 0 then
-              require 'telescope.builtin'.git_files()
+              require 'user.utils.telescope'.pickers.git_files()
             else
-              require 'telescope.builtin'.find_files()
+              require 'user.utils.telescope'.pickers.find_files()
             end
           end,
         },
-        { '<LocalLeader>g', function() require 'telescope.builtin'.live_grep() end },
+        { '<LocalLeader>g', function() require 'user.utils.telescope'.pickers.live_grep() end },
         {
           '<LocalLeader>.',
           function()
@@ -203,21 +203,19 @@ if not vim.g.vscode then
             elseif vim.fn.executable 'fd' > 0 then
               opts.find_command = { 'fd', '--type', 'f', '--strip-cwd-prefix' }
             end
-            require 'telescope.builtin'.find_files(opts)
+            require 'user.utils.telescope'.pickers.find_files(opts)
           end,
         },
-        { '<LocalLeader>b',  require 'user.utils.telescope'.buffers },
-        { '<LocalLeader>j',  function() require 'telescope.builtin'.jumplist() end },
-        { '<LocalLeader>h',  function() require 'telescope.builtin'.highlights() end },
-        { '<LocalLeader>s',  function() require 'telescope.builtin'.lsp_document_symbols() end },
-        { '<LocalLeader>S',  function() require 'telescope.builtin'.lsp_dynamic_workspace_symbols() end },
-        { '<LocalLeader>d',  function() require 'telescope.builtin'.diagnostics() end },
-        { '<LocalLeader>/',  function() require 'telescope.builtin'.find_files() end },
-        { '<LocalLeader>?',  function() require 'telescope.builtin'.help_tags() end },
-        { '<LocalLeader>tm', function() require 'telescope.builtin'.man_pages() end },
-        { '<LocalLeader>u',  function() require 'telescope'.extensions.undo.undo() end },
-        { '<LocalLeader>*',  function() require 'telescope.builtin'.grep_string() end },
-        { '<LocalLeader>L',  function() require 'telescope'.extensions.lazy.lazy() end },
+        { '<LocalLeader>b',  function() require 'user.utils.telescope'.buffers() end },
+        { '<LocalLeader>j',  function() require 'user.utils.telescope'.pickers.jumplist() end },
+        { '<LocalLeader>h',  function() require 'user.utils.telescope'.pickers.highlights() end },
+        { '<LocalLeader>s',  function() require 'user.utils.telescope'.pickers.lsp_document_symbols() end },
+        { '<LocalLeader>S',  function() require 'user.utils.telescope'.pickers.lsp_dynamic_workspace_symbols() end },
+        { '<LocalLeader>d',  function() require 'user.utils.telescope'.pickers.diagnostics() end },
+        { '<LocalLeader>/',  function() require 'user.utils.telescope'.pickers.find_files() end },
+        { '<LocalLeader>?',  function() require 'user.utils.telescope'.pickers.help_tags() end },
+        { '<LocalLeader>tm', function() require 'user.utils.telescope'.pickers.man_pages() end },
+        { '<LocalLeader>*',  function() require 'user.utils.telescope'.pickers.grep_string() end },
       },
     },
 
